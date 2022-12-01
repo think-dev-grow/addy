@@ -285,6 +285,7 @@ const login = async (req, res, next) => {
       success: true,
       msg: `${user.kodeHex} , Login was successfull`,
       token,
+      user,
     });
   } catch (error) {
     next(error);
