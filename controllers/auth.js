@@ -268,7 +268,7 @@ const login = async (req, res, next) => {
       email: user.email,
     };
 
-    const token = jwt.sign(payload, process.env.JWT, { expiresIn: "3m" });
+    const token = jwt.sign(payload, process.env.JWT, { expiresIn: "20m" });
 
     if (user.ipAddress !== ip) {
       loginMail(
