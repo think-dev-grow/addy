@@ -13,6 +13,7 @@ const {
   logOut,
   answerSQ,
   refreshToken,
+  selectPin,
 } = require("../controllers/auth");
 
 const verifyTokenMiddleware = require("../utils/verifyToken");
@@ -42,5 +43,7 @@ router.put("/logout/:token", verifyTokenMiddleware, logOut);
 router.get("/answer-security-question/:token", answerSQ);
 
 router.get("/refresh-token/:token", refreshToken);
+
+router.post("/set-transaction-pin/:id", selectPin);
 
 module.exports = router;

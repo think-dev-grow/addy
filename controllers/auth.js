@@ -217,7 +217,7 @@ const securityQusetion = async (req, res, next) => {
 
     const data = await User.findOneAndUpdate(
       { _id: req.params.id },
-      { verified: "completed" },
+      { verified: "sq" },
       { new: true }
     );
 
@@ -254,8 +254,12 @@ const login = async (req, res, next) => {
 
     if (!confirmPassword) return next(handleError(400, "Password incorrect."));
 
-    if (user.logStamp && user.logStamp >= currentTimestamp)
-      return next(handleError(404, "user already logged in."));
+    if (user.logStamp) {
+      const diff = currentTimestamp - user.logStamp;
+
+      if (diff < 60000)
+        return next(handleError(404, "user already logged in."));
+    }
 
     const data = await User.findOneAndUpdate(
       { _id: user._id },
@@ -340,12 +344,11 @@ const answerSQ = async (req, res, next) => {
 
     if (!user) return next(handleError(400, "user does not exist"));
 
-    // await User.findOneAndUpdate(
-    //   { _id: user._id },
-    //   { logIn: true },
-    //   { new: true }
-    // );
-
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { verified: "asq" },
+      { new: true }
+    );
     res.status(200).json({ success: true, user });
   } catch (error) {
     next(error);
@@ -383,6 +386,12 @@ const forgotPassword = async (req, res, next) => {
     const token = jwt.sign(payload, process.env.JWT, { expiresIn: "5m" });
 
     resetPassword(user.email, user.firstname, user.kodeHex, token);
+
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { verified: "fp" },
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
@@ -428,11 +437,40 @@ const resetPasswordAPI = async (req, res, next) => {
 
     const userData = await User.findByIdAndUpdate(
       { _id: id },
-      { $set: { password: hash } }
+      { $set: { password: hash, verified: "completed" } }
     );
+
     res.status(200).json({
       success: true,
       msg: "User password has been rest",
+      data: userData,
+    });
+  } catch (error) {
+    console.log(error);
+    next(handleError(500, "Oops, something went wrong"));
+  }
+};
+
+const selectPin = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { code, confirmCode } = req.body;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(404, "User does not exist."));
+
+    if (code !== confirmCode)
+      return next(handleError(404, `Hey ${user.kodeHex}, password dont match`));
+
+    const userData = await User.findByIdAndUpdate(
+      { _id: id },
+      { $set: { transactionPin: code } }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Successfull , remeber ${user.kodeHex} don't share you pin with anyone`,
       data: userData,
     });
   } catch (error) {
@@ -454,4 +492,5 @@ module.exports = {
   resetPasswordAPI,
   answerSQ,
   refreshToken,
+  selectPin,
 };

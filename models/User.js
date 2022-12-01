@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema(
     ipAddress: { type: String, default: "" },
     verified: { type: String, default: "activated" },
     logDetails: { type: Object },
+    transactionPin: { type: String, default: "", trim: true },
   },
   { timestamps: true }
 );
