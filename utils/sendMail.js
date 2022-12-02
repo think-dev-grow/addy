@@ -117,7 +117,7 @@ const resetPassword = (to, name, username, token) => {
                 Click on the below link to reset your password.
               </p>
               <a
-                href="https://ardilla-be-app.herokuapp.com/ardilla/api/auth/reset-password/${token}"
+                href="https://ardilla.herokuapp.com/ardilla/api/auth/reset-password/${token}"
                 style="border: none; border-radius: 4px; color: #fff; cursor: pointer; display: inline-block; font-size: 16px; padding: 15px 30px; background-color: #027EE6; text-decoration: none; margin: 25px 0;"
               >
                 Password Reset
