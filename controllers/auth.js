@@ -244,6 +244,8 @@ const login = async (req, res, next) => {
       currentTimestamp,
     } = req.body;
 
+    const diff = currentTimestamp - user.logStamp;
+
     const user = await User.findOne({ email: email });
 
     if (!user) return next(handleError(404, "User does not exist."));
@@ -254,12 +256,7 @@ const login = async (req, res, next) => {
 
     if (!confirmPassword) return next(handleError(400, "Password incorrect."));
 
-    if (user.logStamp) {
-      const diff = currentTimestamp - user.logStamp;
-
-      if (diff < 60000)
-        return next(handleError(404, "user already logged in."));
-    }
+    if (diff < 60000) return next(handleError(404, "user already logged in."));
 
     const data = await User.findOneAndUpdate(
       { _id: user._id },
@@ -267,29 +264,29 @@ const login = async (req, res, next) => {
       { new: true }
     );
 
-    const payload = {
-      id: user._id,
-      email: user.email,
-    };
+    // const payload = {
+    //   id: user._id,
+    //   email: user.email,
+    // };
 
-    const token = jwt.sign(payload, process.env.JWT, { expiresIn: "20m" });
+    // const token = jwt.sign(payload, process.env.JWT, { expiresIn: "20m" });
 
-    if (user.ipAddress !== ip) {
-      loginMail(
-        user.email,
-        user.kodeHex,
-        platName,
-        userOs,
-        data.logDetails.city,
-        data.logDetails.countryCode
-      );
-    }
+    // if (user.ipAddress !== ip) {
+    //   loginMail(
+    //     user.email,
+    //     user.kodeHex,
+    //     platName,
+    //     userOs,
+    //     data.logDetails.city,
+    //     data.logDetails.countryCode
+    //   );
+    // }
 
     res.status(200).json({
       success: true,
       msg: `${user.kodeHex} , Login was successfull`,
       token,
-      user,
+      diff,
     });
   } catch (error) {
     next(error);
