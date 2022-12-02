@@ -7,6 +7,8 @@ const rn = require("random-number");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+const { ms, s, m, h, d } = require("time-convert");
+
 const handleError = require("../utils/error");
 const {
   sendVerificationMail,
@@ -264,6 +266,8 @@ const login = async (req, res, next) => {
       { new: true }
     );
 
+    const min = ms.to(m)(diff);
+
     // const payload = {
     //   id: user._id,
     //   email: user.email,
@@ -287,6 +291,7 @@ const login = async (req, res, next) => {
       msg: `${user.kodeHex} , Login was successfull`,
       // token,
       diff,
+      min,
     });
   } catch (error) {
     next(error);
