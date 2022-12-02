@@ -14,6 +14,7 @@ const {
   answerSQ,
   refreshToken,
   selectPin,
+  wrongContact,
 } = require("../controllers/auth");
 
 const verifyTokenMiddleware = require("../utils/verifyToken");
@@ -45,5 +46,7 @@ router.get("/answer-security-question/:token", answerSQ);
 router.get("/refresh-token/:token", refreshToken);
 
 router.post("/set-transaction-pin/:id", selectPin);
+
+router.put("/wrong-contact/:id", wrongContact);
 
 module.exports = router;
