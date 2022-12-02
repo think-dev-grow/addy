@@ -268,28 +268,28 @@ const login = async (req, res, next) => {
 
     const min = ms.to(m)(diff);
 
-    // const payload = {
-    //   id: user._id,
-    //   email: user.email,
-    // };
+    const payload = {
+      id: user._id,
+      email: user.email,
+    };
 
-    // const token = jwt.sign(payload, process.env.JWT, { expiresIn: "20m" });
+    const token = jwt.sign(payload, process.env.JWT, { expiresIn: "20m" });
 
-    // if (user.ipAddress !== ip) {
-    //   loginMail(
-    //     user.email,
-    //     user.kodeHex,
-    //     platName,
-    //     userOs,
-    //     data.logDetails.city,
-    //     data.logDetails.countryCode
-    //   );
-    // }
+    if (user.ipAddress !== ip) {
+      loginMail(
+        user.email,
+        user.kodeHex,
+        platName,
+        userOs,
+        data.logDetails.city,
+        data.logDetails.countryCode
+      );
+    }
 
     res.status(200).json({
       success: true,
       msg: `${user.kodeHex} , Login was successfull`,
-      // token,
+      token,
       diff,
       min,
     });
