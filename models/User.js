@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, default: "", trim: true },
     platform: { type: String, default: "Ardilla" },
     isAdmin: { type: Boolean, default: false },
-    logStamp: { type: String, default: "" },
+    logStamp: { type: Number, default: null },
     dhid: { type: String, default: "" },
     uid: { type: String, default: "" },
     securityQusetion: { type: Object },
