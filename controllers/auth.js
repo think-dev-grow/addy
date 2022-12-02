@@ -202,6 +202,29 @@ const wrongEmail = async (req, res, next) => {
   }
 };
 
+//Wrong Contact API
+const wrongContact = async (req, res, next) => {
+  try {
+    const check = await User.findById(req.params.id);
+
+    const { newPhoneNumber } = req.body;
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const userUpdate = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { contact: newPhoneNumber },
+      { new: true }
+    );
+
+    res
+      .status(200)
+      .json({ success: true, msg: "email removed from DB", user: userUpdate });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Security Question API
 const securityQusetion = async (req, res, next) => {
   try {
@@ -328,7 +351,7 @@ const refreshToken = async (req, res, next) => {
 
     res.status(200).json({ success: true, token, data });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
@@ -496,4 +519,5 @@ module.exports = {
   answerSQ,
   refreshToken,
   selectPin,
+  wrongContact,
 };
