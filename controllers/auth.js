@@ -444,7 +444,7 @@ const resetPasswordAPI = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      msg: "User password has been rest",
+      msg: `hey ${user.kodeHex} , password reset successfull`,
       data: userData,
     });
   } catch (error) {
