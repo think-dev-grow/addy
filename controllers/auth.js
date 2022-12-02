@@ -285,7 +285,7 @@ const login = async (req, res, next) => {
     res.status(200).json({
       success: true,
       msg: `${user.kodeHex} , Login was successfull`,
-      token,
+      // token,
       diff,
     });
   } catch (error) {
