@@ -244,9 +244,9 @@ const login = async (req, res, next) => {
       currentTimestamp,
     } = req.body;
 
-    const diff = currentTimestamp - user.logStamp;
-
     const user = await User.findOne({ email: email });
+
+    const diff = currentTimestamp - user.logStamp;
 
     if (!user) return next(handleError(404, "User does not exist."));
 
