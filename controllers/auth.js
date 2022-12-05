@@ -281,7 +281,7 @@ const login = async (req, res, next) => {
 
     if (!confirmPassword) return next(handleError(400, "Password incorrect."));
 
-    if (diff < 180000) return next(handleError(404, "user already logged in."));
+    if (diff < 10000) return next(handleError(404, "user already logged in."));
 
     const data = await User.findOneAndUpdate(
       { _id: user._id },
