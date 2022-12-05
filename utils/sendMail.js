@@ -445,14 +445,7 @@ const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
                   <img src="https://i.postimg.cc/rmtXJNqX/illustration.png " alt="" style="width: 100px">
 
                   <h6 style="color: #041D05; font-size: 16px; font-weight: 500; line-height: 26px; margin-top: 20px;">
-                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${date.format(
-        today,
-        "ddd, MMM DD YYYY"
-      )}  ${date.format(
-        today,
-        "hh:mm A [GMT]Z",
-        true
-      )}  in ${city},${countryCode},If you signed in recently, no need to worry, you can disregard this message.
+                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${today}  in ${city},${countryCode},If you signed in recently, no need to worry, you can disregard this message.
                   </h6>
 
                   <h6 style="color: #041D05; font-size: 16px; font-weight: 500; line-height: 26px; margin-top: 10px;">If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to contact us if you need any further assistance.</h6>
