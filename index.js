@@ -15,6 +15,7 @@ dotenv.config();
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const accountRoute = require("./routes/account");
 
 const connectDB = () => {
   mongoose
@@ -27,6 +28,7 @@ app.use(express.json());
 
 app.use("/ardilla/api/auth", authRoutes);
 app.use("/ardilla/api/user", userRoutes);
+app.use("/ardilla/api/account", accountRoute);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;

@@ -205,11 +205,15 @@ const wrongEmail = async (req, res, next) => {
 //Wrong Contact API
 const wrongContact = async (req, res, next) => {
   try {
-    const check = await User.findById(req.params.id);
-
     const { newPhoneNumber } = req.body;
 
-    if (!check) return next(handleError(404, "User does not exist."));
+    const checkUser = await User.findById(req.params.id);
+
+    if (!checkUser) return next(handleError(404, "User does not exist."));
+
+    const checkNumber = await User.findOne({ contact: newPhoneNumber });
+    if (checkNumber)
+      return next(handleError(404, "phone number already exist"));
 
     const userUpdate = await User.findOneAndUpdate(
       { _id: req.params.id },
