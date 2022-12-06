@@ -18,9 +18,11 @@ const getAccountStatement = async (req, res, next) => {
   try {
     const id = req.params.id;
 
-    const acct = await ArdillaAccount.findById(id);
+    const acct = await ArdillaAccount.findOne({ userID: id });
 
-    res.status(200).json(acct);
+    if (!acct) return next(handleError(404, "User does not have an account."));
+
+    res.status(200).json({ success: true, acct });
   } catch (error) {
     next(error);
   }
