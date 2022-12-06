@@ -7,7 +7,7 @@ const ArdillaAccountSchema = new mongoose.Schema(
     dillaWallet: { type: Number, default: "0.00" },
     totalFunds: { type: Number, default: "0.00" },
     kycPoints: { type: Number, default: 0 },
-    badge: { type: String, default: "cadet" },
+    badge: { type: String, default: "cadetsssss" },
   },
   { timestamps: true }
 );
