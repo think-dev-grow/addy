@@ -4,20 +4,26 @@ const handleError = require("../utils/error");
 
 const createAccount = async (req, res, next) => {
   try {
-    const id = req.body._id;
+    const accountDetail = new ArdillaAccount(req.body);
 
-    const accountDetail = new ArdillaAccount({
-      userID: id,
-    });
+    const test = await accountDetail.save();
 
-    await accountDetail.save();
-
-    console.log(accountDetail);
-
-    res.status(201).json({ msg: "accounted created", accountDetail });
+    res.status(201).json({ msg: "accounted created", test });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { createAccount };
+const getAccountStatement = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const acct = await ArdillaAccount.findById(id);
+
+    res.status(200).json(acct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createAccount, getAccountStatement };
