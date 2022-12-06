@@ -4,7 +4,7 @@ const handleError = require("../utils/error");
 
 const createAccount = async (req, res, next) => {
   try {
-    const { id } = req.body;
+    const id = req.body._id;
 
     const accountDetail = new ArdillaAccount({
       userID: id,
