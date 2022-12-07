@@ -35,23 +35,39 @@ const autoFlexPlan = async (req, res, next) => {
   try {
     const { flexPlanObj } = req.body;
 
-    const { ern, exp, type } = flexPlanObj;
+    const { ern, exp } = flexPlanObj;
 
-    const calc = ern - exp;
+    if (exp) {
+      const calc = ern - exp;
 
-    const flexPlanData = { type, ern, exp, psv: calc };
+      const flexPlanData = { type, ern, exp, psv: calc };
 
-    const plan = await ArdillaAccount.findOneAndUpdate(
-      { userID: req.params.id },
-      { $set: { flexPlan: flexPlanData } },
-      { new: true }
-    );
+      const plan = await ArdillaAccount.findOneAndUpdate(
+        { userID: req.params.id },
+        { $set: { flexPlan: flexPlanData } },
+        { new: true }
+      );
 
-    res.status(200).json({
-      success: true,
-      msg: `Get to saving`,
-      data: plan,
-    });
+      res.status(200).json({
+        success: true,
+        msg: `Get to saving`,
+        data: plan,
+      });
+    } else {
+      const flexPlanData = { ern, exp, psv: calc };
+
+      const plan = await ArdillaAccount.findOneAndUpdate(
+        { userID: req.params.id },
+        { $set: { flexPlan: flexPlanData } },
+        { new: true }
+      );
+
+      res.status(200).json({
+        success: true,
+        msg: `Get to saving..`,
+        data: plan,
+      });
+    }
   } catch (error) {
     next(error);
   }

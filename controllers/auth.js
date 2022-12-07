@@ -275,11 +275,11 @@ const login = async (req, res, next) => {
 
     const user = await User.findOne({ email: email });
 
-    const diff = currentTimestamp - user.logStamp;
-
     if (!user) return next(handleError(404, "User does not exist."));
 
     if (!user.dhid) return next(handleError(404, "This email is Invalid."));
+
+    const diff = currentTimestamp - user.logStamp;
 
     const confirmPassword = await bcrypt.compare(password, user.password);
 
