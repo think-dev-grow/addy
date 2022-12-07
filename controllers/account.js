@@ -40,7 +40,7 @@ const autoFlexPlan = async (req, res, next) => {
     if (exp) {
       const calc = ern - exp;
 
-      const flexPlanData = { type, ern, exp, psv: calc };
+      const flexPlanData = { ern, exp, psv: calc };
 
       const plan = await ArdillaAccount.findOneAndUpdate(
         { userID: req.params.id },
@@ -54,7 +54,7 @@ const autoFlexPlan = async (req, res, next) => {
         data: plan,
       });
     } else {
-      const flexPlanData = { ern, exp, psv: calc };
+      const flexPlanData = { ern, exp };
 
       const plan = await ArdillaAccount.findOneAndUpdate(
         { userID: req.params.id },
