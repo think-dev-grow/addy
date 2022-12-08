@@ -31,46 +31,59 @@ const getAccountStatement = async (req, res, next) => {
   }
 };
 
-const autoFlexPlan = async (req, res, next) => {
+const autoTargetEmgPlan = async (req, res, next) => {
   try {
-    const { flexPlanObj } = req.body;
+    const { ern } = req.body;
 
-    const { ern, exp } = flexPlanObj;
+    const psr1 = ern * 0.2;
+    const psr2 = ern * 0.4;
+    const psr3 = ern * 0.6;
+    const psr4 = ern * 0.8;
 
-    if (exp) {
-      const calc = ern - exp;
+    const psr = [psr1, psr2, psr3, psr4];
 
-      const flexPlanData = { ern, exp, psv: calc };
+    const flexPlanData = {
+      ern,
+      psr,
+    };
 
-      const plan = await ArdillaAccount.findOneAndUpdate(
-        { userID: req.params.id },
-        { $set: { flexPlan: flexPlanData } },
-        { new: true }
-      );
+    // res.status(200).json(prs);
 
-      res.status(200).json({
-        success: true,
-        msg: `Get to saving`,
-        data: plan,
-      });
-    } else {
-      const flexPlanData = { ern, exp };
+    // const { ern, exp } = flexPlanObj;
 
-      const plan = await ArdillaAccount.findOneAndUpdate(
-        { userID: req.params.id },
-        { $set: { flexPlan: flexPlanData } },
-        { new: true }
-      );
+    // if (exp) {
+    //   const calc = ern - exp;
 
-      res.status(200).json({
-        success: true,
-        msg: `Get to saving..`,
-        data: plan,
-      });
-    }
+    //   const flexPlanData = { ern, exp, psv: calc };
+
+    const plan = await ArdillaAccount.findOneAndUpdate(
+      { userID: req.params.id },
+      { $set: { flexPlan: flexPlanData } },
+      { new: true }
+    );
+
+    //   res.status(200).json({
+    //     success: true,
+    //     msg: `Get to saving`,
+    //     data: plan,
+    //   });
+    // } else {
+    //   const flexPlanData = { ern, exp };
+
+    //   const plan = await ArdillaAccount.findOneAndUpdate(
+    //     { userID: req.params.id },
+    //     { $set: { flexPlan: flexPlanData } },
+    //     { new: true }
+    //   );
+
+    res.status(200).json({
+      success: true,
+      msg: `Get to saving..`,
+      plan,
+    });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { createAccount, getAccountStatement, autoFlexPlan };
+module.exports = { createAccount, getAccountStatement, autoTargetEmgPlan };
