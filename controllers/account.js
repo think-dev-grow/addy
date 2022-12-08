@@ -41,10 +41,12 @@ const autoTargetEmgPlan = async (req, res, next) => {
     const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
 
     const psr = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
+    const cPsr = [ern * 0.4, ern * 0.6, ern * 0.8];
 
     const flexPlanData = {
       ern,
       psr,
+      cPsr,
     };
 
     // res.status(200).json(prs);
