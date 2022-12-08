@@ -27,44 +27,122 @@ const sendVerificationMail = (to, value) => {
         },
       ],
       subject: "Email verifaction",
-      htmlbody: `<table
-      cellSpacing="0"
-      cellPadding="0"
-      style="background-color: #F2F2F2; border: 1px solid #eee; width: 100%;"
-    >
-      <tbody>
-        <tr>
-          <td>
-          <div style="background-color: #fff; border: 1px solid #eee;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; padding: 40px 50px; margin: 40px auto; max-width: 600px; width: 600px;">
-              <div style="display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
+      htmlbody: `<html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="CEO.css">
+          <title>CEO Profile mail</title>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+       <style>
+          body{background-image: url(img/Backgrounds\ .svg);background-size: cover;height: 2351px;width: 1440px;top: -2px;}
+      
+          .Logo{width: 104.06px;height: 38.77px;margin-left:760.47px;margin-top: 77px;}
+      
+          .line-1{width: 743px;top:77.77px;color: gray/300;margin-left: 420px;margin-top: 39.09px;border: 1px solid #D1D5DB;}
+      
+          .Text-1{width: 233px;height: 39px;top: 166px;margin-top:88.23px;font-size: 30px;font-weight: 500;font-family: 'ubuntu',sans-serif;color: #4B5563;line-height: 130.4px;font-style: normal;text-align: center;margin-left:415.67px;}
+      
+          #container-1{display: flex;flex-direction: row;}
 
-             
-
-                <div style="text-align: center;">
-
-                <img src="https://i.postimg.cc/wBWk35pJ/Logo-copy.png" alt=""  style="padding: 30px 0px; width: 120px;">
-
-                <hr>
-                <br>
-                
-                 
-                  <img src="https://i.postimg.cc/rmtXJNqX/illustration.png " alt="" style="width: 100px">
-                  <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; margin-top: 20px;">Please use the OTP code below to complete your account setup:</h6>
-                  <p style="color: #041D05; font-size: 58px; font-weight: 700; line-height: 76px; margin-top: 20px;">${value}</p>
-                  
-                  <h3 style="color: #041D05; font-size: 16px; font-weight: 600; line-height: 26px; margin-top: 70px;">- The Ardilla Team</h3>
-                  <small style="color: #041D05; font-size: 14px; font-weight: 500; line-height: 26px;  margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved </small>
-                </div>
+         
+      
+          .Frame-1{ width: 284..44px;height: 234px;top: 52px;margin-top: 136px;margin-left: 375.45px;}
+      
+          #Text-2{width: 488px;height: 234px;top: 52px;font-size: 20px;line-height: 26.08px;font-weight: 500;color:#4B5563;font-style: normal;font-family: 'ubuntu',sans-serif;margin-left: 44px;margin-top: 136px;}
+      
+          #Mask{top: -5px;left: 367px;margin-left:-120px;margin-top:90px;}
+      
+          #container-2{display: flex;flex-direction: row;}
+      
+          .Text-3{top: 68.5px;font-size: 20px;line-height: 26.08px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: left;color: #4B5563;font-style: normal;margin-left:370.45px;margin-top:138.5px}
+      
+          .Frame-2{width: 292.34px;height: 241px;left: 539px;margin-left: 51px;margin-top: 70px;}
+      
+          .Text-4{width: 586px;height: 78px;top: 10px;font-weight: 500;line-height: 26.08px;text-align: center;color: #4B5563;margin-top: 80px;font-size: 20px;font-family: normal;text-align: center;margin-left: 490px; font-family: 'ubuntu',sans-serif;}
+      
+          #container-3{display:flex;background-image: url(img/Background\ 2.svg);background-color: #3D0072;width: 693px;height:225.63px;border-radius: 11.94px;margin-left: 430px;margin-top: 61px;}
+      
+          .Text-5{width: 238.16px;font-weight: 700;color: #FFFFFF;font-size: 25px;font-style: normal;padding-top: 35px;padding-left: 45px;font-family: Arial, Helvetica, sans-serif;}
+      
+          .button-1{background-color: #FFFFFF;color: #3D0072;height: 29.25px;border-radius: 4.78px;padding: 15px,20px;gap: 5.97px; align-items: center;border: none;cursor: pointer;margin-left: 45px;}
+      
+          .button-1:hover{background-color: lightseagreen;}
+      
+          .phone{width: 257.76px;height: 157.6px;top: 10px;padding-top: 68px;margin-left: 90px;}
+      
+          .Text-6{width: 389px;font-size: 16px;height: 18px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;line-height: 18px;color: gray/600;margin-left: 620px;margin-top: 55px;}
+      
+          #icon{margin-left: 745.48px;left: 294.5px;width: 120px;height: 30px;display: flex;flex-direction: row;margin-top: 45px;} 
+          
+          .linkedin{padding-left: 20px;}
+          
+          .twitter{padding-left: 20px;}
+      
+          .Text-7{color: #4B5563;width: 709px;height: 72px;top: 170px;font-size: 16px;font-weight: 500;line-height: 24px;margin-left: 450px;margin-top: 60.02px;text-align: center;font-family: 'ubuntu',sans-serif;}
+      
+          .Text-8{width: 374px;font-size: 17.86px;color: #6B7280;font-weight: 500;font-family:Arial, Helvetica, sans-serif;height: 25px;font-style: normal;margin-left: 740px;margin-top: 136px;}
+      
+          .Text-9{width: 374px;height: 25px;top: 50.79;font-size: 17.86px;line-height: 20.52px;font-style: normal;color: gray/500;font-family:'ubuntu',sans-serif;margin-top: 24.79px;margin-left: -130px;font-weight: 500;padding-bottom: 20px;}
+       </style>
+           </head>
+      <body>
+          
+          <img class="Logo" src="img/Logo.svg" alt="Logo">
+          
+          <hr class="line-1">
+          <p class="Text-1">Hi Mathew,</p>
+          ${value}
+          <div id="container-1">
+              <img class="Frame-1" src="img/Frame 1.svg" alt="Frame-1">
+              <div>
+              <div id="Text-2">
               
-              
-              
+                 <h3 style="color: black">My name is Onyinye Cheryl Dallas,
+                  <br>CEO of Ardilla.<br></h3>
+      
+                  <p><b><br>Having you on board in the Ardilla community means<br> so much to the team. We are eager to help you start
+                  <br> your journey to building wealth.<br>
+                  Freedom means different things to everyone, but at<br> Ardilla, it means making smart financial decisions<br> today so that we live tomorrow without restrictions.</p>
+                 </div>
+              </div> 
+              <div id="Mask">
+                  <img src="img/Mask group (1).svg" alt="Mask">
+              </div>       
+          </div>
+          <div id="container-2">
+              <p class="Text-3">
+               <b> There are quite a number of tools on the Ardilla<br> platform, including savings, investments, and<br> financial education, that allows you take charge of<br> your future now.
+              </p>
+              <img class="Frame-2" src="img/Frame 2.svg" alt="Frame-2">
+          </div>
+          <p class="Text-4">
+              <b>I look forward to your journey. I am sure it will be great. Please<br> do not hesitate to contact our team if you need assistance. We are available to you 24/7.
+          </p>
+      
+          <div id="container-3">
+              <div>
+                  <h3 class="Text-5">Download for free Start saving Today</h3>
+                  <input class="button-1" type="button" value="Download for free">
               </div>
-                
-         </td>
-        </tr>
-      </tbody>
-    </table>
-      `,
+                  <img class="phone" src="img/Phone .svg" alt="Phone">
+          </div>
+          <h3 class="Text-6"><b>Ardilla, 33B, Ogundana street, Allen, Ikeja, Lagos</h3>
+          <div id="icon">
+              <a href="#"><img  class="facebook" src="img/Facebook logo.svg" alt="Facebook-icon"></a>
+              <a href="#"><img class="linkedin" src="img/linkedin logo.svg" alt="Linkedin-icon"></a>
+              <a href="#"><img class="twitter" src="img/twitter logo.svg" alt="Twitter-icon"></a>
+           </div>
+               <h3 class="Text-7"><b>You are receiving this message because you signed up on Ardilla.  If you would like to stop<br> receiving tips on financial literacy, you can opt out by clicking unsubscribe. For more <br>information about how we process data please see our Privacy Policy </h3>
+             
+      
+          <h3 class="Text-8"><b>The Ardilla Team<h3p>
+          <p class="Text-9">Copyright © 2022 Ardilla. All rights reserved.</p>
+          
+          
+      </body>
+      </html>`,
     })
     .then((resp) => console.log("success", resp))
     .catch((error) => console.log("error", error));
