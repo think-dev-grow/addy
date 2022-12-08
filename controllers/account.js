@@ -40,7 +40,7 @@ const autoTargetEmgPlan = async (req, res, next) => {
     const psr3 = ern * 0.6;
     const psr4 = ern * 0.8;
 
-    const psr = [psr1, psr2, psr3, psr4];
+    const psr = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`, `${psr3}-${psr4}`];
 
     const flexPlanData = {
       ern,
