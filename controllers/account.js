@@ -36,9 +36,9 @@ const autoTargetEmgPlan = async (req, res, next) => {
     const { ern } = req.body;
 
     // const psr1 = ern * 0.2;
-    const psr1 = ern * 0.4;
-    const psr2 = ern * 0.6;
-    const psr3 = ern * 0.8;
+    const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
+    const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
+    const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
 
     const psr = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
 
