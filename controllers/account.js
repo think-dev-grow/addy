@@ -34,7 +34,7 @@ const getAccountStatement = async (req, res, next) => {
 
 const autoTargetEmgPlan = async (req, res, next) => {
   try {
-    const { ern } = req.body;
+    const { ern, exp } = req.body;
 
     const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
     const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
@@ -53,7 +53,7 @@ const autoTargetEmgPlan = async (req, res, next) => {
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
-      { $set: { flexPlan: { ...userAcct.flexPlan, flexPlanData } } },
+      { $set: { flexPlan: { ...userAcct.flexPlan, flexPlanData, exp } } },
       { new: true }
     );
 
@@ -69,7 +69,7 @@ const autoTargetEmgPlan = async (req, res, next) => {
 
 const customFlexPlan = async (req, res, next) => {
   try {
-    const stuff = req.body.info;
+    const { info, stuff } = req.body;
 
     const id = req.params.id;
 
@@ -77,11 +77,12 @@ const customFlexPlan = async (req, res, next) => {
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
-      { $set: { flexPlan: { ...userAcct.flexPlan, stuff } } },
+      { $set: { flexPlan: { ...userAcct.flexPlan, stuff, info } } },
       { new: true }
     );
 
-    res.status(200).json(userAcct);
+    res.status(200).json(plan);
+    console.log(stuff);
   } catch (error) {
     next(error);
   }
