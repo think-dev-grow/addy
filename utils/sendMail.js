@@ -27,7 +27,7 @@ const sendVerificationMail = (to, value) => {
         },
       ],
       subject: "Email verifaction",
-      htmlbody: `<body style="background-image: url(https://i.postimg.cc/mk1r2tHZ/Backgrounds-3.png); width: 1440px; height: 1032; margin-top: -2px;background-size:cover;padding-bottom: 50px;">
+      htmlbody: `<body style="background-image: url(https://i.postimg.cc/mk1r2tHZ/Backgrounds-3.png); width: 100%; margin-top: -2px;background-size:cover;padding-bottom: 50px;">
       <img style="width: 104.06px;height: 38.77px; margin-left:740.47px; margin-top: 77px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
       <hr style="width: 743px;top:77.77px;color: gray/300;margin-left: 425px;margin-top: 39.09px;border: 1px solid #D1D5DB">
       <img style="margin-top: 70px; margin-left: 740.47px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
