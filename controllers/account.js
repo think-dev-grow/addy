@@ -88,7 +88,7 @@ const autoTargetEmgPlanCalc = async (req, res, next) => {
 
 const customFlexPlan = async (req, res, next) => {
   try {
-    const { info, stuff } = req.body;
+    const { totalSavingTarget, savingTargetInMoths, duration } = req.body;
 
     const id = req.params.id;
 
