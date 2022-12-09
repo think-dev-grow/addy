@@ -10,6 +10,7 @@ const ArdillaAccountSchema = new mongoose.Schema(
     flexPlan: { type: Object, default: {} },
     kycPoints: { type: Number, default: 0 },
     badge: { type: String, default: "cadet" },
+    psDetails: { type: Object, default: {} },
   },
   { timestamps: true }
 );

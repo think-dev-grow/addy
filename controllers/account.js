@@ -35,20 +35,44 @@ const getAccountStatement = async (req, res, next) => {
 const autoTargetEmgPlan = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { ern, exp } = req.body;
+    const { ern } = req.body;
 
     const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
     const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
     const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
 
-    const psr = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
+    const psrange = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
     const cPsr = [ern * 0.4, ern * 0.6, ern * 0.8];
 
     const userAcct = await ArdillaAccount.findOne({ userID: id });
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: id },
-      { $set: { flexPlan: { ...userAcct.flexPlan, ern, psr, cPsr, exp } } },
+      { $set: { flexPlan: { ...userAcct.flexPlan, ern, psrange, cPsr } } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Get to saving..`,
+      plan,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const autoTargetEmgPlanCalc = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { exp } = req.body;
+
+    const userAcct = await ArdillaAccount.findOne({ userID: id });
+    //run check here
+
+    const plan = await ArdillaAccount.findOneAndUpdate(
+      { userID: id },
+      { $set: { psDetails: { exp } } },
       { new: true }
     );
 
@@ -87,5 +111,6 @@ module.exports = {
   createAccount,
   getAccountStatement,
   autoTargetEmgPlan,
+  autoTargetEmgPlanCalc,
   customFlexPlan,
 };
