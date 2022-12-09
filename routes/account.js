@@ -3,6 +3,7 @@ const {
   createAccount,
   getAccountStatement,
   autoTargetEmgPlan,
+  customFlexPlan,
 } = require("../controllers/account");
 const router = express.Router();
 
@@ -11,5 +12,7 @@ router.post("/create-account", createAccount);
 router.get("/get-account/:id", getAccountStatement);
 
 router.put("/auto-flex-plan/:id", autoTargetEmgPlan);
+
+router.put("/custom-flex-plan/:id", customFlexPlan);
 
 module.exports = router;

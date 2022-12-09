@@ -2,6 +2,7 @@ const ArdillaAccount = require("../models/ArdillaAct");
 
 const handleError = require("../utils/error");
 var mongoose = require("mongoose");
+const User = require("../models/User");
 
 const createAccount = async (req, res, next) => {
   try {
@@ -35,7 +36,6 @@ const autoTargetEmgPlan = async (req, res, next) => {
   try {
     const { ern } = req.body;
 
-    // const psr1 = ern * 0.2;
     const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
     const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
     const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
@@ -49,34 +49,13 @@ const autoTargetEmgPlan = async (req, res, next) => {
       cPsr,
     };
 
-    // res.status(200).json(prs);
-
-    // const { ern, exp } = flexPlanObj;
-
-    // if (exp) {
-    //   const calc = ern - exp;
-
-    //   const flexPlanData = { ern, exp, psv: calc };
+    const userAcct = await ArdillaAccount.findOne({ userID: id });
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
-      { $set: { flexPlan: flexPlanData } },
+      { $set: { flexPlan: { ...userAcct.flexPlan, flexPlanData } } },
       { new: true }
     );
-
-    //   res.status(200).json({
-    //     success: true,
-    //     msg: `Get to saving`,
-    //     data: plan,
-    //   });
-    // } else {
-    //   const flexPlanData = { ern, exp };
-
-    //   const plan = await ArdillaAccount.findOneAndUpdate(
-    //     { userID: req.params.id },
-    //     { $set: { flexPlan: flexPlanData } },
-    //     { new: true }
-    //   );
 
     res.status(200).json({
       success: true,
@@ -88,4 +67,29 @@ const autoTargetEmgPlan = async (req, res, next) => {
   }
 };
 
-module.exports = { createAccount, getAccountStatement, autoTargetEmgPlan };
+const customFlexPlan = async (req, res, next) => {
+  try {
+    const stuff = req.body.info;
+
+    const id = req.params.id;
+
+    const userAcct = await ArdillaAccount.findOne({ userID: id });
+
+    const plan = await ArdillaAccount.findOneAndUpdate(
+      { userID: req.params.id },
+      { $set: { flexPlan: { ...userAcct.flexPlan, stuff } } },
+      { new: true }
+    );
+
+    res.status(200).json(userAcct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  createAccount,
+  getAccountStatement,
+  autoTargetEmgPlan,
+  customFlexPlan,
+};
