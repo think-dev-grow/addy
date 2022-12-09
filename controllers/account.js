@@ -1,4 +1,5 @@
 const ArdillaAccount = require("../models/ArdillaAct");
+var abbreviate = require("number-abbreviate");
 
 const handleError = require("../utils/error");
 var mongoose = require("mongoose");
@@ -37,9 +38,13 @@ const autoTargetEmgPlan = async (req, res, next) => {
     const id = req.params.id;
     const { ern } = req.body;
 
-    const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
-    const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
-    const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
+    const psr1 = abbreviate(ern * 0.4);
+    const psr2 = abbreviate(ern * 0.6);
+    const psr3 = abbreviate(ern * 0.8);
+
+    // const psr1 = Intl.NumberFormat("en-US").format(ern * 0.4);
+    // const psr2 = Intl.NumberFormat("en-US").format(ern * 0.6);
+    // const psr3 = Intl.NumberFormat("en-US").format(ern * 0.8);
 
     const psrange = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
     const cPsr = [ern * 0.4, ern * 0.6, ern * 0.8];
