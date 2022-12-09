@@ -72,7 +72,7 @@ const autoTargetEmgPlanCalc = async (req, res, next) => {
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: id },
-      { $set: { psDetails: { ...userAcct.psDetails, exp } } },
+      { $set: { psDetails: { ...exp } } },
       { new: true }
     );
 
