@@ -27,23 +27,45 @@ const sendVerificationMail = (to, value) => {
         },
       ],
       subject: "Email verifaction",
-      htmlbody: `<body style="background-image: url(https://i.postimg.cc/mk1r2tHZ/Backgrounds-3.png); width: 100%; margin-top: -2px;background-size:cover;padding-bottom: 50px;">
-      <img style="width: 104.06px;height: 38.77px; margin-left:740.47px; margin-top: 77px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-      <hr style="width: 743px;top:77.77px;color: gray/300;margin-left: 425px;margin-top: 39.09px;border: 1px solid #D1D5DB">
-      <img style="margin-top: 70px; margin-left: 740.47px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
-      <h3 style="margin-top: 25.64px;margin-left: 710px;font-family: 'ubuntu',sans-serif;font-size: 40px;line-height: 52.16px;color: #4B5563;width: 233px;left: 200px;font-style: normal;">Hi Matthew,</h3>
-      <p style="width: 633px;line-height: 26.08px;font-size: 20px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;margin-left: 510px;color:#4B5563;">Welcome to Ardilla! Your number one wealth-building platform.<br>
-  
-          <br>At Ardilla, we did the hard work, so you don’t have to because we believe wealth building should be easy for everyone.<br>
+      htmlbody: `<table
+      cellSpacing="0"
+      cellPadding="0"
+      style="background-color: #F2F2F2; border: 1px solid #eee; width: 100%;"
+    >
+      <tbody>
+        <tr>
+          <td>
 
-          ${value}
-          
-          <br>Continue your wealth-building journey on our app. We have got you covered.
-      </p>
-      <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 19.96px;font-weight: 500;line-height: 26.02px;margin-top: 83px;margin-left: 790px;"">Have Fun</p>
-      <p style="color: #4B5563;width: 141px;height: 26px;font-size: 18.2px;font-weight: 600;line-height: 26px;margin-left: 760px;">The Ardilla Team</p>
-      <p style="width: 374px;font-size: 17.86px;color: #6B7280;font-weight: 500;font-family: 'ubunt',sans-serif;height: 25px;font-style: normal;margin-left: 655px;">Copyright © 2022 Ardilla. All rights reserved.</p>
-  </body>`,
+          <div style="background-color: #fff; border: 1px solid #eee;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; padding: 40px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
+
+            <div style="display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
+
+              <div style="text-align: center;">
+
+                <img src="https://i.postimg.cc/wBWk35pJ/Logo-copy.png" alt=""  style="padding: 30px 0px; width: 120px;">
+
+                <hr>
+                <br>
+
+                <img src="https://i.postimg.cc/rmtXJNqX/illustration.png " alt="" style="width: 100px">
+
+                <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Please use the OTP code below to complete your account setup:</h6>
+
+                <p style="color: #041D05; font-size: 38px; font-weight: 500; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p>
+
+                <h3 style="color: #041D05; font-size: 19px; font-weight: 600; line-height: 26px; font-family: 'Ubuntu'; margin-top: 70px;">- The Ardilla Team</h3>
+
+                <small style="color: #041D05; font-size: 17px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved </small>
+
+              </div>
+              
+            </div>
+
+          </div>         
+              </td>
+            </tr>
+          </tbody>
+        </table>`,
     })
     .then((resp) => console.log("success", resp))
     .catch((error) => console.log("error", error));
