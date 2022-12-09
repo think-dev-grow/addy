@@ -77,7 +77,7 @@ const autoTargetEmgPlanCalc = async (req, res, next) => {
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: id },
-      { $set: { psDetails: { ...exp } } },
+      { $set: { psDetails: { ...userAcct.flexPlan, ...exp } } },
       { new: true }
     );
 
@@ -95,13 +95,15 @@ const customFlexPlan = async (req, res, next) => {
   try {
     const { totalSavingTarget, savingTargetInMoths, duration } = req.body;
 
+    // const consto
+
     const id = req.params.id;
 
     const userAcct = await ArdillaAccount.findOne({ userID: id });
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
-      { $set: { flexPlan: { ...userAcct.flexPlan, stuff, info } } },
+      { $set: { flexPlan: { ...userAcct.flexPlan } } },
       { new: true }
     );
 
