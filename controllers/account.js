@@ -44,17 +44,11 @@ const autoTargetEmgPlan = async (req, res, next) => {
     const psr = [psr1, `${psr1}-${psr2}`, `${psr2}-${psr3}`];
     const cPsr = [ern * 0.4, ern * 0.6, ern * 0.8];
 
-    const flexPlanData = {
-      ern,
-      psr,
-      cPsr,
-    };
-
     const userAcct = await ArdillaAccount.findOne({ userID: id });
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: id },
-      { $set: { flexPlan: { ...userAcct.flexPlan, flexPlanData, exp } } },
+      { $set: { flexPlan: { ...userAcct.flexPlan, ern, psr, cPsr, exp } } },
       { new: true }
     );
 
