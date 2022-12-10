@@ -91,11 +91,15 @@ const autoTargetEmgPlanCalc = async (req, res, next) => {
   }
 };
 
-const customFlexPlan = async (req, res, next) => {
+const customFlexPlanAPI = async (req, res, next) => {
   try {
     const { totalSavingTarget, savingTargetInMoths, duration } = req.body;
 
-    // const consto
+    const customFlexPlan = {
+      totalSavingTarget,
+      savingTargetInMoths,
+      duration,
+    };
 
     const id = req.params.id;
 
@@ -103,7 +107,11 @@ const customFlexPlan = async (req, res, next) => {
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
-      { $set: { flexPlan: { ...userAcct.flexPlan } } },
+      {
+        $set: {
+          flexPlan: { ...userAcct.flexPlan, customFlexPlan, type: "custom" },
+        },
+      },
       { new: true }
     );
 
@@ -119,5 +127,5 @@ module.exports = {
   getAccountStatement,
   autoTargetEmgPlan,
   autoTargetEmgPlanCalc,
-  customFlexPlan,
+  customFlexPlanAPI,
 };
