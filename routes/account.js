@@ -4,7 +4,7 @@ const {
   getAccountStatement,
   autoTargetEmgPlan,
   autoTargetEmgPlanCalc,
-  customFlexPlan,
+  customFlexPlanAPI,
 } = require("../controllers/account");
 const router = express.Router();
 
@@ -16,6 +16,6 @@ router.put("/auto-flex-plan/:id", autoTargetEmgPlan);
 
 router.put("/calc-target-saving-rate/:id", autoTargetEmgPlanCalc);
 
-router.put("/custom-flex-plan/:id", customFlexPlan);
+router.put("/custom-flex-plan/:id", customFlexPlanAPI);
 
 module.exports = router;
