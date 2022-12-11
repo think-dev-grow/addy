@@ -87,7 +87,7 @@ const sendOTP = async (req, res, next) => {
       return next(handleError(400, "User already exist"));
     }
   } catch (error) {
-    next(handleError(500, "Network Error"));
+    next(error);
   }
 };
 
