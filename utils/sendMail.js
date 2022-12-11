@@ -59,8 +59,8 @@ const sendVerificationMail = (to, value) => {
                   
                   <div style="text-align: center;">
                    
-                    <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                    <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+                    <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
+                    <hr style="color: gray/300; margin-top: 39.09px;">
                     <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
                     <h3 style="margin-top: 25.64px;font-family: 'ubuntu',sans-serif;font-size:20px;color: #4B5563; font-weight:600;font-style: normal;">Hi ${value},</h3>
                     <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">Welcome to Ardilla! Your number one wealth-building platform.<br>
