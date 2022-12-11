@@ -57,7 +57,7 @@ const sendVerificationMail = (to, value) => {
                     <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                     <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
                     <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
-                    <h3 style="margin-top: 25.64px;font-family: 'ubuntu',sans-serif;font-size:20px;color: #4B5563; font-weight:600;font-style: normal;">Hi ${name},</h3>
+                    <h3 style="margin-top: 25.64px;font-family: 'ubuntu',sans-serif;font-size:20px;color: #4B5563; font-weight:600;font-style: normal;">Hi ${value},</h3>
                     <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">Welcome to Ardilla! Your number one wealth-building platform.<br>
   
                       <br>At Ardilla, we did the hard work, so you don’t have to because we believe wealth building should be easy for everyone.<br>
@@ -87,25 +87,25 @@ const sendVerificationMail = (to, value) => {
     .catch((error) => console.log("error", error));
 };
 
-  //Reset password mail
-  const resetPassword = (to, name, username, token) => {
-    client
-      .sendMail({
-        bounce_address: "NOREPLY@bounce.ardilla.africa",
-        from: {
-          address: "noreply@ardilla.africa",
-          name: "Ardilla",
-        },
-        to: [
-          {
-            email_address: {
-              address: `${to}`,
-              name: `${username} ${name}`,
-            },
+//Reset password mail
+const resetPassword = (to, name, username, token) => {
+  client
+    .sendMail({
+      bounce_address: "NOREPLY@bounce.ardilla.africa",
+      from: {
+        address: "noreply@ardilla.africa",
+        name: "Ardilla",
+      },
+      to: [
+        {
+          email_address: {
+            address: `${to}`,
+            name: `${username} ${name}`,
           },
-        ],
-        subject: "Reset password",
-        htmlbody: `<table
+        },
+      ],
+      subject: "Reset password",
+      htmlbody: `<table
       cellSpacing="0"
       cellPadding="0"
       style="background-image: url(https://i.postimg.cc/g0B05pW5/background-6.png); border: 1px solid #eee; width: 100%;">
@@ -144,11 +144,10 @@ const sendVerificationMail = (to, value) => {
         </tr>
       </tbody>
     </table>`,
-      })
-      .then((resp) => console.log("success", resp))
-      .catch((error) => console.log("error", error));
-  };
-
+    })
+    .then((resp) => console.log("success", resp))
+    .catch((error) => console.log("error", error));
+};
 
 //complete profile mail
 const sendCompleteProfile = (to, name) => {
