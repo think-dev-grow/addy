@@ -91,32 +91,85 @@ const autoTargetEmgPlanCalc = async (req, res, next) => {
   }
 };
 
-const customFlexPlanAPI = async (req, res, next) => {
+const customFlexPlanAPI1 = async (req, res, next) => {
   try {
-    const { totalSavingTarget, savingTargetInMoths, duration } = req.body;
-
-    const customFlexPlan = {
-      totalSavingTarget,
-      savingTargetInMoths,
-      duration,
-    };
-
     const id = req.params.id;
 
     const userAcct = await ArdillaAccount.findOne({ userID: id });
+
+    const { customTotalSavingTarget } = req.body;
 
     const plan = await ArdillaAccount.findOneAndUpdate(
       { userID: req.params.id },
       {
         $set: {
-          flexPlan: { ...userAcct.flexPlan, customFlexPlan, type: "custom" },
+          flexPlan: {
+            ...userAcct.flexPlan,
+            type: "custom",
+            customTotalSavingTarget,
+          },
         },
       },
       { new: true }
     );
 
-    res.status(200).json(plan);
-    console.log(stuff);
+    res.status(200).json({ msg: "new", plan });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const customFlexPlanAPI2 = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const userAcct = await ArdillaAccount.findOne({ userID: id });
+
+    const { customMonthlySavingTarget } = req.body;
+
+    const plan = await ArdillaAccount.findOneAndUpdate(
+      { userID: req.params.id },
+      {
+        $set: {
+          flexPlan: {
+            ...userAcct.flexPlan,
+            type: "custom",
+            customMonthlySavingTarget,
+          },
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ msg: "new", plan });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const customFlexPlanAPI3 = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const userAcct = await ArdillaAccount.findOne({ userID: id });
+
+    const { customDuration } = req.body;
+
+    const plan = await ArdillaAccount.findOneAndUpdate(
+      { userID: req.params.id },
+      {
+        $set: {
+          flexPlan: {
+            ...userAcct.flexPlan,
+            type: "custom",
+            customDuration,
+          },
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ msg: "new", plan });
   } catch (error) {
     next(error);
   }
@@ -127,5 +180,7 @@ module.exports = {
   getAccountStatement,
   autoTargetEmgPlan,
   autoTargetEmgPlanCalc,
-  customFlexPlanAPI,
+  customFlexPlanAPI1,
+  customFlexPlanAPI2,
+  customFlexPlanAPI3,
 };
