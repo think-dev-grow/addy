@@ -19,9 +19,9 @@ let client = new SendMailClient({ url, token });
 // Password Reset
 // </a>
 
-{
-  /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"></div> */
-}
+// {
+//   /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"></div> */
+// }
 
 const today = new Date();
 
