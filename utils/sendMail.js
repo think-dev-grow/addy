@@ -86,65 +86,26 @@ const sendVerificationMail = (to, value) => {
     .then((resp) => console.log("success", resp))
     .catch((error) => console.log("error", error));
 };
-{
-  /* <table
-      cellSpacing="0"
-      cellPadding="0"
-      style="background-image: url(https://i.postimg.cc/g0B05pW5/background-6.png); border: 1px solid #eee; width: 100%;"
-    >
-      <tbody>
-        <tr>
-          <td>
 
-          <div style=background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; padding: 40px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-
-            <div style="display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
-
-              <div style="text-align: center;">
-
-                <img src="https://i.postimg.cc/wBWk35pJ/Logo-copy.png" alt=""  style="padding: 30px 0px; width: 120px;">
-
-                <hr>
-                <br>
-
-                <img src="https://i.postimg.cc/rmtXJNqX/illustration.png " alt="" style="width: 100px">
-
-                <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Please use the OTP code below to complete your account setup:</h6>
-
-                <p style="color: #041D05; font-size: 38px; font-weight: 500; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p>
-
-                <h3 style="color: #041D05; font-size: 19px; font-weight: 600; line-height: 26px; font-family: 'Ubuntu'; margin-top: 70px;">- The Ardilla Team</h3>
-
-                <small style="color: #041D05; font-size: 17px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved </small>
-
-              </div>
-              
-            </div>
-
-          </div>         
-              </td>
-            </tr>
-          </tbody>
-        </table>
-//Reset password mail
-const resetPassword = (to, name, username, token) => {
-  client
-    .sendMail({
-      bounce_address: "NOREPLY@bounce.ardilla.africa",
-      from: {
-        address: "noreply@ardilla.africa",
-        name: "Ardilla",
-      },
-      to: [
-        {
-          email_address: {
-            address: `${to}`,
-            name: `${username}`,
-          },
+  //Reset password mail
+  const resetPassword = (to, name, username, token) => {
+    client
+      .sendMail({
+        bounce_address: "NOREPLY@bounce.ardilla.africa",
+        from: {
+          address: "noreply@ardilla.africa",
+          name: "Ardilla",
         },
-      ],
-      subject: "Reset password",
-      htmlbody: `<table
+        to: [
+          {
+            email_address: {
+              address: `${to}`,
+              name: `${username} ${name}`,
+            },
+          },
+        ],
+        subject: "Reset password",
+        htmlbody: `<table
       cellSpacing="0"
       cellPadding="0"
       style="background-image: url(https://i.postimg.cc/g0B05pW5/background-6.png); border: 1px solid #eee; width: 100%;">
@@ -183,11 +144,11 @@ const resetPassword = (to, name, username, token) => {
         </tr>
       </tbody>
     </table>`,
-    })
-    .then((resp) => console.log("success", resp))
-    .catch((error) => console.log("error", error));
-}; */
-}
+      })
+      .then((resp) => console.log("success", resp))
+      .catch((error) => console.log("error", error));
+  };
+
 
 //complete profile mail
 const sendCompleteProfile = (to, name) => {
