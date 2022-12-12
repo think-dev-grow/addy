@@ -77,7 +77,7 @@ const sendVerificationMail = (to, value) => {
                 <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
                
                   
-                  <div >
+                  <div style="text-align: center;">
 
                  
                    
@@ -87,11 +87,13 @@ const sendVerificationMail = (to, value) => {
 
                     <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
 
+
+                    <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">Please use the OTP code below to complete your account setup.</p>
+
                   
 
-                     <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Please use the OTP code below to complete your account setup:</h6> 
 
-                  <p style="color: #041D05; font-size: 58px; font-weight: 700; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p> 
+                  <p style="color: #041D05; font-size: 38px; font-weight: 700; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p> 
                    
                     
                     <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 16px;font-weight: 500;margin-top: 30px;"">Have Fun</p>
