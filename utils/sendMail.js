@@ -406,6 +406,8 @@ const supportMail = (to, name) => {
                                 <div style="padding: 0 80px 50px;">
                                     <p style="font-size: 14px; margin: 0; line-height: 22px;">You are currently on a trial period and we hope you like what you see in {{product_name}}. You can upgrade to a paid subscription anytime before the end of your trial period.</p>
                                    
+
+                                   < hr style="margin-top: 39px;">
                                    
                                   <h6>test</h6>
                                 </div>
