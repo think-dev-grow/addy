@@ -76,9 +76,9 @@ const sendVerificationMail = (to, value) => {
                                   <p style="font-size: 14px; margin: 0; line-height: 22px;">Please use the OTP code below to complete your account setup.</p>
                                  
 
-                                 < hr style="margin-top: 39px;">
+                                 <hr style="margin-top: 39px;">
                                  
-                                <h3>style="font-size: 30px; font-weight: 600; margin: 0; line-height: 22px; color:#383636;">${value}</h3>
+                                <h3 style="font-size: 30px; font-weight: 600; margin: 0; line-height: 22px; color:#383636;">${value}</h3>
 
                               
                             </div>
