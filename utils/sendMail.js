@@ -73,15 +73,26 @@ const sendVerificationMail = (to, value) => {
 
                          
 
-                              <div style="width: 100%; text-align: center;">
+                              <div style="width: 90%; text-align: center;">
                               
                                 <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                                   
-                                <p style="font-size: 14px; margin: 0; line-height: 22px;">Please use the OTP code below to complete your account setup.</p>
+                                <hr style="margin-top: 39px; color: gray/300;">
 
-                                <hr style="margin-top: 39px;">
+
+                                <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
+
+
+                                <p style="font-size: 14px; margin-top:20px; line-height: 22px;">Please use the OTP code below to complete your account setup.</p>
+
                                   
                                 <h3 style="font-size: 30px; font-weight: 600; margin: 0; line-height: 22px; color:#383636;">${value}</h3>
+
+                                <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 16px;font-weight: 500;margin-top: 30px;">Have Fun</p>
+
+                                <p style="color: #4B5563;height: 26px;font-size: 14.2px;font-weight: 600;line-height: 26px; margin-top: 28px;">The Ardilla Team</p>
+                                
+                                <p style="font-size: 12.86px;color: #6B7280;font-weight: 500;font-family: 'ubunt',sans-serif;height: 25px;font-style: normal; margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved.</p>
 
                               </div>
                               
