@@ -232,7 +232,7 @@ const sendCompleteProfile = (to, name) => {
                  
                 
                      
-                      <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
+                      <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                       
                       <hr style="color: gray/300;margin-top: 39.09px;">
 
@@ -307,7 +307,7 @@ const ceoMail = (to, name) => {
 
              
                 
-                  <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
+                  <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
                   <hr style="color: gray/300;margin-top: 39.09px;">
 
@@ -424,7 +424,7 @@ const supportMail = (to, name) => {
 
                   
 
-                     h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Work in progress..</h6> 
+                     <p style="margin-top:88.23px;font-size: 15px;font-weight: 500;font-family: 'ubuntu',sans-serif;color: #4B5563; text-align:justify">work in progress</p>
 
                  
                    
@@ -485,7 +485,7 @@ const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
                   
                   <div style="text-align: center;">
                
-                  <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
+                  <img style="width: 104.06px;height: 38.77px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
                   <hr style="color: gray/300;margin-top: 39.09px;">
 
