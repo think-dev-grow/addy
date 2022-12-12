@@ -73,7 +73,7 @@ const sendVerificationMail = (to, value) => {
 
                             style=";
 
-                              <div style="width: 100%; text-align: center; padding:0 35px;">
+                              <div style="width: 100%; text-align: center;">
                               
                                 <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                                   
