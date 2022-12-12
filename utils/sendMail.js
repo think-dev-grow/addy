@@ -77,7 +77,7 @@ const sendVerificationMail = (to, value) => {
                 <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
                
                   
-                  <div style="text-align: center;">
+                  <div >
 
                  
                    
