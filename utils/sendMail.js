@@ -61,17 +61,17 @@ const sendVerificationMail = (to, value) => {
       ],
       subject: "Email verifaction",
       htmlbody: `
-      <table cellspacing="0" cellpadding="0" style="background-color: #F4F3ED; border: 1px solid #eee; width: 100%;">
+      <table cellspacing="0" cellpadding="0" style="background-image: url(https://i.postimg.cc/g0B05pW5/background-6.png); border: 1px solid #eee; width: 100%;">
       <tbody>
           <tr>
               <td>
-                       <div style="background-color: #fff;  box-shadow: 0px 9px 12px #654C1A27;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; margin: auto; max-width: 600px; overflow: hidden; width: 600px;">
+                       <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png);  box-shadow: 0px 9px 12px #654C1A27;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; margin: auto; max-width: 600px; overflow: hidden; width: 600px;">
                                
                         
                              
                             <div style="display:flex; justify-content: center; align-items: center; margin-top:40px;">
 
-                              <div>
+                              <div style="width: 100%;">
                               
                                 <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                                   
