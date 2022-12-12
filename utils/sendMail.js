@@ -69,14 +69,14 @@ const sendVerificationMail = (to, value) => {
                                
                         
                              
-                            <div style="display:flex; justify-content: center; align-items: center; margin-top:40px;">
+                            <div style="display:flex; width: 90%; justify-content: center; align-items: center; margin-top:40px;">
 
                          
 
-                              <div style="width: 90%; text-align: center;">
+                              <div style="text-align: center;">
                               
                                 <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                                
+
                                   
                                 <hr style="margin-top: 39px; color: gray/300;">
 
