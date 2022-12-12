@@ -66,12 +66,11 @@ const sendVerificationMail = (to, value) => {
           <tr>
               <td>
                   <div style="background-color: #fff;  box-shadow: 0px 9px 12px #654C1A27;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; margin: auto; max-width: 600px; overflow: hidden; width: 600px;">
-                          <div style="">
-                              
+                               
                         
                              
-                              <div style="padding: 0 80px 50px; display:flex;">
-                              
+                            <div style="display:flex; flex-direction: column; justify-content: center; align-items: center; margin-top:40px;">
+
                               <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
                                   <p style="font-size: 14px; margin: 0; line-height: 22px;">Please use the OTP code below to complete your account setup.</p>
@@ -80,8 +79,9 @@ const sendVerificationMail = (to, value) => {
                                  < hr style="margin-top: 39px;">
                                  
                                 <h3>style="font-size: 30px; font-weight: 600; margin: 0; line-height: 22px; color:#383636;">${value}</h3>
-                              </div>
-                          </div>
+
+                              
+                            </div>
                       </div>
                </td>
           </tr>
