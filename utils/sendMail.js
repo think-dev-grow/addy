@@ -93,7 +93,7 @@ const sendVerificationMail = (to, value) => {
                   
 
 
-                  <p style="color: #041D05; font-size: 38px; font-weight: 700; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p> 
+                  <p style="color:#383636; font-size: 38px; font-weight: 700; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p> 
                    
                     
                     <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 16px;font-weight: 500;margin-top: 30px;"">Have Fun</p>
