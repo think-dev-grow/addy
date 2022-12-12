@@ -21,7 +21,24 @@ let client = new SendMailClient({ url, token });
 
 // {
 //   /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"></div> */
+
+{
+  /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"> */
+}
+
 // }
+
+{
+  /* <div style="display: flex; align-items: center; padding-bottom: 190px; margin-bottom: 30px;">  */
+}
+
+//  <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+
+//   <div style="display: flex; align-items: center; padding-bottom: 750px; margin-bottom: 30px;">
+
+//ceo  <div style="display: flex; align-items: center; padding-bottom: 750px; margin-bottom: 30px;">
+
+//<div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
 
 const today = new Date();
 
@@ -61,6 +78,8 @@ const sendVerificationMail = (to, value) => {
                
                   
                   <div style="text-align: center;">
+
+                 
                    
                     <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
@@ -68,13 +87,13 @@ const sendVerificationMail = (to, value) => {
 
                     <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
 
-                    <h3 style="margin-top: 25.64px; font-family: 'ubuntu',sans-serif; font-size:20px; color: #4B5563; font-weight:600; font-style: normal;">Hi ${value},</h3>
-                    <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">Welcome to Ardilla! Your number one wealth-building platform.<br>
-  
-                      <br>At Ardilla, we did the hard work, so you don’t have to because we believe wealth building should be easy for everyone.<br>
-                      
-                      <br>Continue your wealth-building journey on our app. We have got you covered.
-                   </p>
+                  
+
+                     h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Please use the OTP code below to complete your account setup:</h6> 
+
+                  <p style="color: #041D05; font-size: 58px; font-weight: 700; line-height: 76px; font-family: 'Ubuntu'; margin-top: 20px;">${value}</p> 
+                   
+                    
                     <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 16px;font-weight: 500;margin-top: 30px;"">Have Fun</p>
                     <p style="color: #4B5563; font-size: 14.2px; font-weight: 600; margin-top: 28px;">The Ardilla Team</p>
 
@@ -126,13 +145,21 @@ const resetPassword = (to, name, username, token) => {
           <td>
             
             <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-              <div style="display: flex; align-items: center; padding-bottom: 285px; margin-bottom: 30px;"> 
-             
-                <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+
+            <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
+               
+                  
+         
+            
+            <div style="text-align: center;">
+              
                   
                   <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                  <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+
+                  <hr style="color: gray/300;margin-top: 39.09px;">
+
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
+
                   <p style="margin-top: 38.79px; height: 93px;top: 344.32px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;">We received a password reset request from your account. If you  did not make this request, please contact our customer support team at hello@ardilla.africa or call 01345261<br> 
                     <br> Click the button below to reset your password:
                   </p>
@@ -190,14 +217,28 @@ const sendCompleteProfile = (to, name) => {
               <td>
               
                 <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-                  <div style="display: flex; align-items: center; padding-bottom: 190px; margin-bottom: 30px;"> 
+
+             
+
+                  
+            <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
+               
+                  
+         
+            
+            <div style="text-align: center;">
                  
-                    <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+                
                      
                       <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                      <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+                      
+                      <hr style="color: gray/300;margin-top: 39.09px;">
+
+
                       <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
+
                       <h3 style="margin-top: 25.64px;font-family: 'ubuntu',sans-serif;font-size:20px;color: #4B5563; font-weight:600;font-style: normal;">Hi ${name},</h3>
+
                       <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">Welcome to Ardilla! Your number one wealth-building platform.<br>
     
                         <br>At Ardilla, we did the hard work, so you don’t have to because we believe wealth building should be easy for everyone.<br>
@@ -253,12 +294,21 @@ const ceoMail = (to, name) => {
           <td>
          
             <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-              <div style="display: flex; align-items: center; padding-bottom: 750px; margin-bottom: 30px;"> 
+
+
+            <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
+               
+                  
+            <div style="text-align: center;">
+
+
+
              
-                <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
                 
                   <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                  <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+
+                  <hr style="color: gray/300;margin-top: 39.09px;">
+
                   <p style="margin-top:88.23px;font-size: 20px;font-weight: 500;font-family: 'ubuntu',sans-serif;color: #4B5563; text-align:justify">Hi ${name},</p>
                   <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;">
                         <img style=" width: 190px; height:150px;" src="https://i.postimg.cc/vTvKrNHz/Frame-388.png" alt="Frame-1">
@@ -342,83 +392,55 @@ const supportMail = (to, name) => {
         },
       ],
       subject: "Glad to have you onboard",
-      htmlbody: `<table
-      cellSpacing="0"
-      cellPadding="0"
-      style="background-color: #F2F2F2; border: 1px solid #eee; width: 100%;"
-    >
-      <tbody>
-        <tr>
-          <td>
-          <div style="background-color: #fff; border: 1px solid #eee;  box-sizing: border-box; font-family: Lato, Helvetica, 'Helvetica Neue', Arial, 'sans-serif'; padding: 40px 50px; margin: 40px auto; max-width: 600px; width: 600px;">
+      htmlbody: `
+      <body style="margin: 0;">
+    
+      <table
+        cellSpacing="0"
+        cellPadding="0"
+        style="background-image: url(https://i.postimg.cc/g0B05pW5/background-6.png); border: 1px solid #eee; width: 100%; padding-bottom: 25px;">
+        <tbody>
+          <tr>
+            <td>
+            
+              <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 40px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
 
-              <div style="display: flex; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
+               
 
-             
+                <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
+               
+                  
+                  <div style="text-align: center;">
 
-                <div style="text-align: center;">
+                 
+                   
+                    <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
-                <img src="https://i.postimg.cc/wBWk35pJ/Logo-copy.png" alt=""  style="padding: 30px 0px; width: 120px;">
+                    <hr style="color: gray/300; margin-top: 39.09px;">
 
-                <hr>
-                <br>
+                    <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
 
-                <img src="https://i.postimg.cc/rmtXJNqX/illustration.png " alt="" style="width: 100px">
+                  
+
+                     h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; font-family: 'Ubuntu'; margin-top: 20px;">Work in progress..</h6> 
+
+                 
+                   
+                    
+                 
+                   
+                   
+     
+                  </div>
+  
                 
-                <h4 style="font-weight: normal; font-size: 24px; margin: 0;">
-                   Hi ${name}
-                  </h4>
-
-                  <p>Welcome to Ardila, the pathway to financial freedom.<br/>
-                  What you can expect from Ardilla?</p>
-
-
-                  <p style="color: #041D05; font-size: 40px; font-weight: 700; line-height: 76px; margin-top: 20px;">Saving</p>
-                 
-                 
-                  <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; margin-top: 10px;">
-                 
-                  We help you save your money daily, weekly, or monthly. No pressure. We work at your pace.
-                  </h6>
-
-                  <p style="color: #041D05; font-size: 40px; font-weight: 700; line-height: 76px; margin-top: 20px;">Investment</p>
-                 
-                 
-                  <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; margin-top: 10px;">
-                 
-                  We provide multiple, easy to understand investment opportunities for you. Yes, saving is great but investing is so much better.
-                  </h6>
-
-                  <p style="color: #041D05; font-size: 40px; font-weight: 700; line-height: 76px; margin-top: 20px;">Financial literacy</p>
-                 
-                 
-                  <h6 style="color: #041D05; font-size: 18px; font-weight: 500; line-height: 26px; margin-top: 10px;">
-                 
-                  At Ardilla, we believe financial freedom begins with the right information. Ardila offers wealth-building tips from great financial minds to help you get to where you need to be.
-                
-                  </h6>
-
-
-                  <p> To enjoy your Ardilla experience, log in and complete your KYC.</p>
-
-
-                 
-              
-                  <h3 style="color: #041D05; font-size: 19px; font-weight: 600; line-height: 26px;">I am …….. Your customer support personnel. Don't hesitate to click on contact if you need help.</h3>
-
-
-                  <h3 style="color: #041D05; font-size: 19px; font-weight: 600; line-height: 26px; margin-top: 70px;">- The Ardilla Team</h3>
-                  <small style="color: #041D05; font-size: 17px; font-weight: 500; line-height: 26px;  margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved </small>
                 </div>
-              
-              
-              
-              </div>
-                
-         </td>
-        </tr>
-      </tbody>
-    </table>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </body>         
       `,
     })
     .then((resp) => console.log("success", resp))
@@ -451,13 +473,22 @@ const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
           <td>
       
             <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-              <div style="display: flex; align-items: center; padding-bottom: 285px; margin-bottom: 30px;"> 
-             
-                <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+
+            
+
+
+                
+                <div style="display: flex; align-items: center; padding-bottom: 20px; margin-bottom: 30px;">
+               
+                  
+                  <div style="text-align: center;">
                
                   <img style="width: 104.06px;height: 38.77px; margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                  <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+
+                  <hr style="color: gray/300;margin-top: 39.09px;">
+
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
+                  
                   <p style="margin-top: 64px; height: 93px;top: 344.32px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;"> 
                   We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${today}  in ${city},${countryCode}, If you signed in recently, no need to worry, you can disregard this message.<br><br>If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to <a href="#" style="color: #4B5563;">contact us</a> if you need any further assistance.</p>
                   
