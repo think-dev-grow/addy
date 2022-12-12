@@ -172,7 +172,7 @@ const resetPassword = (to, name, username, token) => {
                   </p>
 
 
-                  <div style="margin-top:40px;">
+                  <div style="margin-top:70px;">
                   <a href="https://ardilla.herokuapp.com/ardilla/api/auth/reset-password/${token}" style="width: 377.36px; height: 55.98px; border-radius: 93.3px;padding: 10.19px;gap: 10.19px;background-color: #8807F7; justify-content: center;align-items: center; font-size: 15.55px; line-height: 17.87px;font-weight: 700;font-family: 'ubuntu',sans-serif;margin-top: 50.68px;border: none; color: white;cursor: pointer; text-decoration: none;" >Reset password</a>
                   </div>
                 
