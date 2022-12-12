@@ -167,7 +167,7 @@ const resetPassword = (to, name, username, token) => {
 
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
 
-                  <p style="margin-top: 38.79px; height: 93px;top: 344.32px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;">We received a password reset request from your account. If you  did not make this request, please contact our customer support team at hello@ardilla.africa or call 01345261<br> 
+                  <p style="margin-top: 38.79px; height: 93px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;">We received a password reset request from your account. If you  did not make this request, please contact our customer support team at hello@ardilla.africa or call 01345261<br> 
                     <br> Click the button below to reset your password:
                   </p>
 
