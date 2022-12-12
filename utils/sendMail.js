@@ -78,7 +78,7 @@ const sendVerificationMail = (to, value) => {
                                 <img style="width: 104.06px;height: 38.77px; " src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
 
                                   
-                                <hr style="margin-top: 39px; color: gray/300; margin:0 20px,">
+                                <hr style="margin-top: 39px; color: gray/300; ">
 
 
                                 <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
