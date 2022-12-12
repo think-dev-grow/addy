@@ -439,11 +439,10 @@ const supportMail = (to, name) => {
                       
 
                         <p style="font-size: 16px;font-weight: 500;font-family: 'ubuntu',sans-serif;text-align: center;color:#4B5563; margin-top: 41px;">
-                      currently in production .....
+                       STILL IN PRODUCTION ...
                       </p>
 
-                     
-
+                   
                         <p style="color: #4B5563;font-family: 'ubuntu',sans-serif;font-style: normal;font-size: 16px;font-weight: 500;margin-top: 30px;"">Have Fun</p>
                         <p style="color: #4B5563;height: 26px;font-size: 14.2px;font-weight: 600;line-height: 26px; margin-top: 28px;">The Ardilla Team</p>
                         <p style="font-size: 12.86px;color: #6B7280;font-weight: 500;font-family: 'ubunt',sans-serif;height: 25px;font-style: normal; margin-top: 20px;">Copyright © 2022 Ardilla. All rights reserved.</p>
@@ -461,7 +460,7 @@ const supportMail = (to, name) => {
           </tr>
         </tbody>
       </table>
-  </body>    
+  </body>
       `,
     })
     .then((resp) => console.log("success", resp))
