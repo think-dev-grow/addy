@@ -12,34 +12,6 @@ let client = new SendMailClient({ url, token });
 // reset pass (name , username)  href="https://ardilla.herokuapp.com/ardilla/api/auth/reset-password/${token}
 //new device login
 
-//  <a
-
-// style="border: none; border-radius: 4px; color: #fff; cursor: pointer; display: inline-block; font-size: 16px; padding: 15px 30px; background-color: #027EE6; text-decoration: none; margin: 25px 0;"
-// >
-// Password Reset
-// </a>
-
-// {
-//   /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"></div> */
-
-{
-  /* <div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;"> */
-}
-
-// }
-
-{
-  /* <div style="display: flex; align-items: center; padding-bottom: 190px; margin-bottom: 30px;">  */
-}
-
-//  <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
-
-//   <div style="display: flex; align-items: center; padding-bottom: 750px; margin-bottom: 30px;">
-
-//ceo  <div style="display: flex; align-items: center; padding-bottom: 750px; margin-bottom: 30px;">
-
-//<div class="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
-
 const today = new Date();
 
 //Verification mail
@@ -418,7 +390,7 @@ const supportMail = (to, name) => {
               <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
                 <div style="display: flex; align-items: center; padding-bottom: 980px; margin-bottom: 30px;"> 
                
-                  <div style="text-center" style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+                  <div  style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
                  
                     <img style="margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                     <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
