@@ -15,6 +15,7 @@ const {
   refreshToken,
   selectPin,
   wrongContact,
+  mobileVeri,
 } = require("../controllers/auth");
 
 const verifyTokenMiddleware = require("../utils/verifyToken");
@@ -48,5 +49,7 @@ router.get("/refresh-token/:token", refreshToken);
 router.post("/set-transaction-pin/:id", selectPin);
 
 router.put("/wrong-contact/:id", wrongContact);
+
+router.get("/mobile/:id", mobileVeri);
 
 module.exports = router;
