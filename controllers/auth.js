@@ -419,12 +419,6 @@ const forgotPassword = async (req, res, next) => {
 
     resetPassword(user.email, user.firstname, user.kodeHex, token);
 
-    const data = await User.findOneAndUpdate(
-      { _id: req.params.id },
-      { verified: "fp" },
-      { new: true }
-    );
-
     res.status(200).json({
       success: true,
       msg: `Hey ${user.kodeHex} Check your email and reset password`,
@@ -469,7 +463,7 @@ const resetPasswordAPI = async (req, res, next) => {
 
     const userData = await User.findByIdAndUpdate(
       { _id: id },
-      { $set: { password: hash, verified: "completed" } }
+      { $set: { password: hash } }
     );
 
     res.status(200).json({
@@ -500,10 +494,18 @@ const selectPin = async (req, res, next) => {
       { $set: { transactionPin: code } }
     );
 
+    const data = await User.findOneAndUpdate(
+      { _id: id },
+      {
+        verified: "sp",
+      },
+      { new: true }
+    );
+
     res.status(200).json({
       success: true,
       msg: `Successfull , remeber ${user.kodeHex} don't share you pin with anyone`,
-      data: userData,
+      data,
     });
   } catch (error) {
     console.log(error);
