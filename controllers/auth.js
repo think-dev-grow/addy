@@ -477,6 +477,28 @@ const resetPasswordAPI = async (req, res, next) => {
   }
 };
 
+const mobileVeri = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const data = await User.findOneAndUpdate(
+      { _id: id },
+      {
+        verified: "mv",
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Successfull , remeber ${user.kodeHex} don't share you pin with anyone`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const selectPin = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -497,7 +519,7 @@ const selectPin = async (req, res, next) => {
     const data = await User.findOneAndUpdate(
       { _id: id },
       {
-        verified: "sp",
+        verified: "completed",
       },
       { new: true }
     );
@@ -528,4 +550,5 @@ module.exports = {
   refreshToken,
   selectPin,
   wrongContact,
+  mobileVeri,
 };
