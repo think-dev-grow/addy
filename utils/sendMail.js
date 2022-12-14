@@ -393,15 +393,22 @@ const supportMail = (to, name) => {
                   <div style="text-align: center;" >
                  
                     <img style="margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                    <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
+
+                    <hr style="color: gray/300;">
+
                     <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
-                    <h2 style="color: gray/600;font-weight: 500;text-align: center;font-size: 30px;margin-top: 26px;font-family:'ubuntu',sans-serif;"> Hi Mary,</h2>
+
+                    <h2 style="color: gray/600;font-weight: 500;text-align: center;font-size: 30px;margin-top: 26px;font-family:'ubuntu',sans-serif;"> Hi ${name},</h2>
+
                     <div style="display: flex;flex-direction: row;">
                             <img width="150" height="120" style="margin-top: 34.98px;" src="https://i.postimg.cc/vTvKrNHz/Frame-388.png" alt="Frame1">
+
                             <h3 style="font-weight: 600;font-size: 13px;color: gray/600;font-family:'ubuntu',sans-serif;font-style: normal; position: absolute; padding-left: 185px; padding-top: 120px; text-align: justify;">We help you save your money daily, weekly, or<br> monthly. No pressure. We work at your pace.</h3>
+
                             <div style="display: flex; justify-content: center;align-items: center;padding-left: 25px;">
                               
                                <img width="60px" height="48px" style=" border-radius: 9.74px;" src="https://i.ibb.co/PFKtCfd/Frame-220.png" alt=" Frame-2">
+
                               <h3 style="font-family:'ubuntu',sans-serif;font-weight: 700;color: #3D0072;font-size: 20px;">Saving</h3>
                             </div>
                             <div style="position:absolute; padding-left: 400px;">
@@ -473,6 +480,7 @@ const supportMail = (to, name) => {
             </td>
           </tr>
         </tbody>
+        </table>
   </body>
       `,
     })
