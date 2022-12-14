@@ -390,7 +390,7 @@ const supportMail = (to, name) => {
               <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
                 <div style="display: flex; align-items: center; padding-bottom: 980px; margin-bottom: 30px;"> 
                
-                  <div  style="height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+                  <div style="text-align: center;" >
                  
                     <img style="margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
                     <hr style="color: gray/300;margin-top: 39.09px;border: 1px solid black">
