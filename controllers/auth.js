@@ -491,7 +491,7 @@ const mobileVeri = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      msg: `Successfull , remeber ${user.kodeHex} don't share you pin with anyone`,
+      msg: `Successfull , remeber ${data.kodeHex} don't share you pin with anyone`,
       data,
     });
   } catch (error) {
