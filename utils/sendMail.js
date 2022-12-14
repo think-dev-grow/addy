@@ -382,7 +382,6 @@ const supportMail = (to, name) => {
       subject: "Glad to have you onboard",
       htmlbody: `
      
-
       <table
       cellSpacing="0"
       cellPadding="0"
