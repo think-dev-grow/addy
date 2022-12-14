@@ -14,6 +14,10 @@ let client = new SendMailClient({ url, token });
 
 const today = new Date();
 
+const todaysDate = date.format(today, "ddd, MMM DD YYYY");
+
+const currentTime = date.format(new Date(), "hh:mm A [GMT]Z");
+
 //Verification mail
 const sendVerificationMail = (to, value) => {
   client
@@ -377,7 +381,7 @@ const supportMail = (to, name) => {
       ],
       subject: "Glad to have you onboard",
       htmlbody: `
-      <body style="margin: 0;">
+     
 
       <table
         cellSpacing="0"
@@ -388,7 +392,8 @@ const supportMail = (to, name) => {
             <td>
              
               <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
-                <div style="display: flex; align-items: center; padding-bottom: 980px; margin-bottom: 30px;"> 
+
+                <div style="display: flex; align-items: center;  margin-bottom: 30px;"> 
                
                   <div style="text-align: center;" >
                  
@@ -403,7 +408,7 @@ const supportMail = (to, name) => {
                     <div style="display: flex;flex-direction: row;">
                             <img width="150" height="120" style="margin-top: 34.98px;" src="https://i.postimg.cc/vTvKrNHz/Frame-388.png" alt="Frame1">
 
-                            <h3 style="font-weight: 600;font-size: 13px;color: gray/600;font-family:'ubuntu',sans-serif;font-style: normal; position: absolute; padding-left: 185px; padding-top: 120px; text-align: justify;">We help you save your money daily, weekly, or<br> monthly. No pressure. We work at your pace.</h3>
+                            <h3 style="font-weight: 600;font-size: 13px;color: gray/600;font-family:'ubuntu',sans-serif;font-style: normal;  padding-top: 120px; text-align: justify;">We help you save your money daily, weekly, or<br> monthly. No pressure. We work at your pace.</h3>
 
                             <div style="display: flex; justify-content: center;align-items: center;padding-left: 25px;">
                               
@@ -411,7 +416,7 @@ const supportMail = (to, name) => {
 
                               <h3 style="font-family:'ubuntu',sans-serif;font-weight: 700;color: #3D0072;font-size: 20px;">Saving</h3>
                             </div>
-                            <div style="position:absolute; padding-left: 400px;">
+                            <div >
                               <img width="100px" height="80px" style="margin-top:20px; align-items: flex-end;" src="https://i.postimg.cc/P5HR3h8M/Frame-371.png" alt="Frame-3"> 
                             </div>
                             
@@ -481,7 +486,7 @@ const supportMail = (to, name) => {
           </tr>
         </tbody>
         </table>
-  </body>
+ 
       `,
     })
     .then((resp) => console.log("success", resp))
@@ -531,7 +536,13 @@ const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
                   
                   <p style="margin-top: 64px; height: 93px;top: 344.32px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;"> 
-                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${today}  in ${city},${countryCode}, If you signed in recently, no need to worry, you can disregard this message.<br><br>If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to <a href="#" style="color: #4B5563;">contact us</a> if you need any further assistance.</p>
+                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${date.format(
+        today,
+        "ddd, MMM DD YYYY"
+      )} ${date.format(
+        new Date(),
+        "hh:mm A [GMT]Z"
+      )}  in ${city},${countryCode}, If you signed in recently, no need to worry, you can disregard this message.<br><br>If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to <a href="#" style="color: #4B5563;">contact us</a> if you need any further assistance.</p>
                   
                  <input style="width: 377.36px; height: 55.98px; border-radius: 93.3px;padding: 10.19px;gap: 10.19px;background-color: #8807F7; justify-content: center;align-items: center; font-size: 15.55px; line-height: 17.87px;font-weight: 700;font-family: 'ubuntu',sans-serif;margin-top: 150px;border: none; color: white;cursor: pointer;" type="button" value="Change Your Password">
                  
