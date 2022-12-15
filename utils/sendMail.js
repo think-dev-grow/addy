@@ -1,4 +1,5 @@
-var { SendMailClient } = require("zeptomail");
+// var { SendMailClient } = require("zeptomail");
+const { SendMailClient } = require("zeptomail");
 const date = require("date-and-time");
 
 const url = "api.zeptomail.com/";
@@ -6,17 +7,6 @@ const token =
   "Zoho-enczapikey wSsVR61w/xT1Xah0lDD8Lr86kQhQA130EEV/31en4yL6Hf7Ep8dvlUHOBAauSKUYRDVsFTBHoOgpmxYHh2Bcidwpn1ACDiiF9mqRe1U4J3x17qnvhDzOX2VfkRuKLokAxghtn2hmGsEk+g==";
 
 let client = new SendMailClient({ url, token });
-
-// profile comp.
-// ceo mail
-// reset pass (name , username)  href="https://ardilla.herokuapp.com/ardilla/api/auth/reset-password/${token}
-//new device login
-
-const today = new Date();
-
-const todaysDate = date.format(today, "ddd, MMM DD YYYY");
-
-const currentTime = date.format(new Date(), "hh:mm A [GMT]Z");
 
 //Verification mail
 const sendVerificationMail = (to, value) => {
@@ -393,15 +383,16 @@ const supportMail = (to, name) => {
             <div style="background-image: url(https://i.postimg.cc/pXgHF8bN/Background-2.png); border: 1px solid #eee; box-sizing: border-box; font-family: 'ubuntu',sans-serif; padding: 90px 50px; margin: 40px auto; max-width: 600px;  width: 600px;">
               <div style="display: flex; align-items: center; padding-bottom: 980px; margin-bottom: 30px;">
 
-                <div style="text-align: center; font-style:normal; height: 493.78570556640625px; width: 633px; margin-top: -75px;">
+                <div style="text-align: center; font-style:normal; width: 633px; margin-top: -75px;">
                   
-                  <img style="margin-top: 70px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
-                  <hr style="color: gray/300;margin-top: 39.09px;">
+                  <img style="margin-top: 30px;" src="https://i.postimg.cc/NjcpQcYP/Logo-1.png" alt="Logo">
+
+                  <hr style="color: gray/300;margin-top: 25.09px;">
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
                   <h2 style="color: gray/600;font-weight: 500;text-align: center;font-size: 30px;margin-top: 26px;font-family:'ubuntu',sans-serif;"> Hi ${name}</h2>
                   
 
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
                     <img  width="150px" height="120px"   src="https://i.postimg.cc/vTvKrNHz/Frame-388.png" alt="">
 
                     <div style="margin: 0 12px; margin-bottom: -40px; display: flex;  justify-content: space-between;">
@@ -425,7 +416,7 @@ const supportMail = (to, name) => {
 
                   </div>
 
-                  <div style="display: flex;flex-direction: row; margin-top: 70px;">
+                  <div style="display: flex;flex-direction: row; margin-top: 40px;">
                     <div>
                       <div style="display: flex;align-items:center;">
                         <img width="60px" height="48px" style="border-radius: 9.74px;"  src="https://i.postimg.cc/ht3VJ1g7/Frame-221.png" alt="Frame4">
@@ -492,7 +483,17 @@ const supportMail = (to, name) => {
     .catch((error) => console.log("error", error));
 };
 
-const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
+const loginMail = (
+  to,
+  name,
+  devicePlat,
+  deviceOs,
+  city,
+  countryCode,
+  date,
+  time,
+  token
+) => {
   client
     .sendMail({
       bounce_address: "NOREPLY@bounce.ardilla.africa",
@@ -535,15 +536,15 @@ const loginMail = (to, name, devicePlat, deviceOs, city, countryCode) => {
                   <img style="margin-top: 40px;" src="https://i.postimg.cc/GtXGRFmK/Mask-group.png" alt="illustration">
                   
                   <p style="margin-top: 64px; height: 93px;top: 344.32px; font-weight: 500;font-size: 16.71px; color: gray/600;font-family: 'ubuntu',sans-serif;text-align: center;"> 
-                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${date.format(
-        today,
-        "ddd, MMM DD YYYY"
-      )} ${date.format(
-        new Date(),
-        "hh:mm A [GMT]Z"
-      )}  in ${city},${countryCode}, If you signed in recently, no need to worry, you can disregard this message.<br><br>If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to <a href="#" style="color: #4B5563;">contact us</a> if you need any further assistance.</p>
+                  We noticed a new sign-in to your account using ${devicePlat} on ${deviceOs} at ${date} ${time}  in ${city},${countryCode}, If you signed in recently, no need to worry, you can disregard this message.<br><br>If that wasn't you or you don't recognize this sign-in, we strongly recommend that you change your password as soon as possible and do not hesitate to <a href="#" style="color: #4B5563;">contact us</a> if you need any further assistance.</p>
                   
-                 <input style="width: 377.36px; height: 55.98px; border-radius: 93.3px;padding: 10.19px;gap: 10.19px;background-color: #8807F7; justify-content: center;align-items: center; font-size: 15.55px; line-height: 17.87px;font-weight: 700;font-family: 'ubuntu',sans-serif;margin-top: 150px;border: none; color: white;cursor: pointer;" type="button" value="Change Your Password">
+                 
+
+
+                 <div style="margin-top:70px;">
+                
+                 <a href="https://ardilla.herokuapp.com/ardilla/api/auth/reset-password/${token}" style="width: 377.36px; height: 55.98px; border-radius: 93.3px;padding: 10.19px;gap: 10.19px;background-color: #8807F7; justify-content: center;align-items: center; font-size: 15.55px; line-height: 17.87px;font-weight: 700;font-family: 'ubuntu',sans-serif;margin-top: 50.68px;border: none; color: white;cursor: pointer; text-decoration: none;" >Reset password</a>
+                 </div>
                  
                   <p style="color: #4B5563;height: 26px;font-size: 14.2px;font-weight: 600; margin-top: 45px; ">The Ardilla Team</p>
                   <p style="font-size: 12.86px;color: #6B7280;font-weight: 500;font-family: 'ubuntu',sans-serif;height: 25px;font-style: normal; margin-top: 25px;">Copyright © 2022 Ardilla. All rights reserved.</p>

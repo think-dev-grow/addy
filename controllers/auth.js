@@ -271,6 +271,8 @@ const login = async (req, res, next) => {
       userOs,
       logDetails,
       currentTimestamp,
+      time,
+      today,
     } = req.body;
 
     const user = await User.findOne({ email: email });
@@ -309,7 +311,10 @@ const login = async (req, res, next) => {
         platName,
         userOs,
         data.logDetails.city,
-        data.logDetails.countryCode
+        data.logDetails.countryCode,
+        time,
+        today,
+        token
       );
     }
 
@@ -534,6 +539,8 @@ const selectPin = async (req, res, next) => {
     next(handleError(500, "Oops, something went wrong"));
   }
 };
+
+// const ardillaIntrestCalc = async (req , res)
 
 module.exports = {
   sendOTP,
