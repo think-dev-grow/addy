@@ -3,7 +3,7 @@ var abbreviate = require("number-abbreviate");
 
 const createTP = async (req, res, next) => {
   try {
-    const data = new TargetPlan(req.body);
+    const data = TargetPlan(req.body);
 
     const targetPlan = await data.save();
 
