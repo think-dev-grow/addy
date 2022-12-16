@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const TargetPlan = new mongoose.Schema(
   {
     userID: { type: String },
+    type: { type: String, default: "auto" },
     name: { type: String },
     earn: { type: Number, default: 0 },
     exp: { type: Number, default: 0 },

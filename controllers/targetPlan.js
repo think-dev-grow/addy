@@ -126,7 +126,7 @@ const customTargetPlanSavingTarget = async (req, res, next) => {
 
     const plan = await TargetPlan.findOneAndUpdate(
       { userID: id },
-      { $set: { customSavingTarget: savingTarget } },
+      { $set: { customSavingTarget: savingTarget, type: "custom" } },
       { new: true }
     );
 
