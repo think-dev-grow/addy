@@ -80,15 +80,15 @@ const autoTargetPlanEarn = async (req, res, next) => {
 const autoTargetPlanExp = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { index } = req.body;
+    const { value } = req.body;
 
     const tpData = await TargetPlan.findOne({ userID: id });
 
-    const diff = tpData.earn - tpData.cPsr[index];
+    const diff = tpData.earn - tpData.cPsr[value];
 
     const autoSavingRate = diff * 0.4;
 
-    const autoSavingTarget = tpData.cPsr[index] * 6;
+    const autoSavingTarget = tpData.cPsr[value] * 6;
 
     const autoDuration = autoSavingTarget / autoSavingRate;
 
