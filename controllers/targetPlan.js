@@ -86,24 +86,24 @@ const autoTargetPlanExp = async (req, res, next) => {
 
     const diff = tpData.earn - tpData.cPsr[value];
 
-    // const autoSavingRate = diff * 0.4;
+    const autoSavingRate = diff * 0.4;
 
-    // const autoSavingTarget = tpData.cPsr[value] * 6;
+    const autoSavingTarget = tpData.cPsr[value] * 6;
 
-    // const autoDuration = autoSavingTarget / autoSavingRate;
+    const autoDuration = autoSavingTarget / autoSavingRate;
 
-    //Cast (run check)
+    // Cast (run check)
 
-    // const plan = await TargetPlan.findOneAndUpdate(
-    //   { userID: id },
-    //   { $set: { exp: diff, autoDuration, autoSavingTarget, autoSavingRate } },
-    //   { new: true }
-    // );
+    const plan = await TargetPlan.findOneAndUpdate(
+      { userID: id },
+      { $set: { exp: diff, autoDuration, autoSavingTarget, autoSavingRate } },
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
-      msg: `Get to saving..`,
-      diff,
+      msg: `exp`,
+      plan,
     });
   } catch (error) {
     next(error);
