@@ -82,13 +82,15 @@ const autoTargetPlanExp = async (req, res, next) => {
     const id = req.params.id;
     const { value } = req.body;
 
+    const index = value - 1;
+
     const tpData = await TargetPlan.findOne({ userID: id });
 
-    const diff = tpData.earn - tpData.cPsr[value - 1];
+    const diff = tpData.earn - tpData.cPsr[index];
 
     const autoSavingRate = diff * 0.4;
 
-    const autoSavingTarget = tpData.cPsr[value - 1] * 6;
+    const autoSavingTarget = tpData.cPsr[index] * 6;
 
     const autoDuration = autoSavingTarget / autoSavingRate;
 
@@ -104,6 +106,7 @@ const autoTargetPlanExp = async (req, res, next) => {
       success: true,
       msg: `exp`,
       value,
+      index,
       plan,
     });
   } catch (error) {
