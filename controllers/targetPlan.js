@@ -98,7 +98,14 @@ const autoTargetPlanExp = async (req, res, next) => {
 
     const plan = await TargetPlan.findOneAndUpdate(
       { userID: id },
-      { $set: { exp: diff, autoDuration, autoSavingTarget, autoSavingRate } },
+      {
+        $set: {
+          exp: tpData.cPsr[index],
+          autoDuration,
+          autoSavingTarget,
+          autoSavingRate,
+        },
+      },
       { new: true }
     );
 
