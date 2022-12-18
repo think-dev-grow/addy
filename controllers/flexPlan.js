@@ -207,6 +207,32 @@ const getFlexPlanAccount = async (req, res, next) => {
   }
 };
 
+const setSavingPeriod = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { period } = req.body;
+
+    // const userAcct = await FlexPlan.findOne({ userID: id });
+    //Cast (run check)
+
+    // const plan = await FlexPlan.findOneAndUpdate(
+    //   { userID: id },
+    //   { $set: { savingPeriod: period } },
+    //   { new: true }
+    // );
+
+    res.status(200).json({
+      // success: true,
+      // msg: `Great choice cadet `,
+      // plan,
+      period,
+      id,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createFP,
   //   targetPlanName,
@@ -216,4 +242,5 @@ module.exports = {
   customFlexPlanSavingRate,
   customFlexPlanDuration,
   getFlexPlanAccount,
+  setSavingPeriod,
 };
