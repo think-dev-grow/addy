@@ -4,6 +4,7 @@ const FlexPlan = new mongoose.Schema(
   {
     userID: { type: String },
     type: { type: String, default: "auto" },
+    name: { type: String },
     earn: { type: Number, default: 0 },
     exp: { type: Number, default: 0 },
     autoSavingTarget: { type: Number, default: 0 },
