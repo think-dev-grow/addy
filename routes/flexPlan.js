@@ -9,6 +9,7 @@ const {
   customFlexPlanSavingRate,
   customFlexPlanDuration,
   getFlexPlanAccount,
+  setSavingPeriod,
 } = require("../controllers/flexPlan");
 
 const router = express.Router();
@@ -29,5 +30,9 @@ router.put("/custom-saving-rate/:id", customFlexPlanSavingRate);
 router.put("/custom-duration/:id", customFlexPlanDuration);
 
 router.get("/get-flex-account/:id", getFlexPlanAccount);
+
+//NEW STUFF
+
+router.put("/saving-period/:id", setSavingPeriod);
 
 module.exports = router;
