@@ -28,6 +28,6 @@ router.put("/custom-saving-rate/:id", customFlexPlanSavingRate);
 
 router.put("/custom-duration/:id", customFlexPlanDuration);
 
-router.get("/get-target-account/:id", getFlexPlanAccount);
+router.get("/get-flex-account/:id", getFlexPlanAccount);
 
 module.exports = router;
