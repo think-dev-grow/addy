@@ -8,7 +8,7 @@ const createFP = async (req, res, next) => {
     const userAcct = await FlexPlan.findOne({ userID: req.body.userID });
 
     if (userAcct)
-      return next(handleError(400, "you already have a Target account."));
+      return next(handleError(400, "you already have a Flex account."));
 
     const data = FlexPlan(req.body);
 
