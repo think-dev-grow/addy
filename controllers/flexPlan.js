@@ -239,6 +239,7 @@ const calcIntrest = async (req, res, next) => {
 
     const month = new Date().getMonth();
     const calenderYears = new Date().getFullYear();
+    const day = new Date().getDate();
 
     const calenderLength = ~~flexAcct?.autoDuration;
 
@@ -352,6 +353,7 @@ const calcIntrest = async (req, res, next) => {
           totalIntrest: runSum,
           intrestPerMonth: sum,
           breakdown: intrestDuration,
+          paymentDate: day,
         },
       },
       { new: true }
