@@ -9,6 +9,7 @@ const {
   customTargetPlanSavingRate,
   customTargetPlanDuration,
   getTargetPlanAccount,
+  setSavingPeriod,
 } = require("../controllers/targetPlan");
 
 const router = express.Router();
@@ -20,6 +21,8 @@ router.put("/Target-plan-name/:id", targetPlanName);
 router.put("/set-earning/:id", autoTargetPlanEarn);
 
 router.put("/set-expenditure/:id", autoTargetPlanExp);
+
+router.put("/saving-period/:id", setSavingPeriod);
 
 //Custom Target-Plan
 router.put("/custom-saving-target/:id", customTargetPlanSavingTarget);

@@ -207,6 +207,30 @@ const getTargetPlanAccount = async (req, res, next) => {
   }
 };
 
+const setSavingPeriod = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { period } = req.body;
+
+    const userAcct = await TargetPlan.findOne({ userID: id });
+    //Cast (run check)
+
+    const plan = await TargetPlan.findOneAndUpdate(
+      { userID: id },
+      { $set: { savingPeriod: period } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Great choice cadet `,
+      plan,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createTP,
   targetPlanName,
@@ -216,4 +240,5 @@ module.exports = {
   customTargetPlanSavingRate,
   customTargetPlanDuration,
   getTargetPlanAccount,
+  setSavingPeriod,
 };

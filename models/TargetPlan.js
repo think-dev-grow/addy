@@ -16,7 +16,7 @@ const TargetPlan = new mongoose.Schema(
     psr: { type: Array },
     cPsr: { type: Array },
     badge: { type: String, default: "cadet" },
-    psDetails: { type: Object, default: {} },
+    savingPeriod: { type: String, default: "" },
   },
   { timestamps: true }
 );

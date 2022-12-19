@@ -2,7 +2,6 @@ const express = require("express");
 
 const {
   createFP,
-  //   targetPlanName,
   autoFlexPlanEarn,
   autoFlexPlanExp,
   customFlexPlanSavingTarget,
@@ -10,13 +9,12 @@ const {
   customFlexPlanDuration,
   getFlexPlanAccount,
   setSavingPeriod,
+  calcIntrest,
 } = require("../controllers/flexPlan");
 
 const router = express.Router();
 
 router.post("/create-account", createFP);
-
-// router.put("/Target-plan-name/:id", targetPlanName);
 
 router.put("/set-earning/:id", autoFlexPlanEarn);
 
@@ -34,5 +32,7 @@ router.get("/get-flex-account/:id", getFlexPlanAccount);
 //NEW STUFF
 
 router.put("/saving-period/:id", setSavingPeriod);
+
+router.get("/calculate-intrest/:id", calcIntrest);
 
 module.exports = router;

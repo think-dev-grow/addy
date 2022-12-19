@@ -17,6 +17,9 @@ const FlexPlan = new mongoose.Schema(
     cPsr: { type: Array },
     badge: { type: String, default: "cadet" },
     savingPeriod: { type: String, default: "" },
+    totalIntrest: { type: Number, default: 0 },
+    intrestPerMonth: { type: Array },
+    breakdown: { type: Array },
   },
   { timestamps: true }
 );
