@@ -334,7 +334,8 @@ const calcIntrest = async (req, res, next) => {
       const ipp = (f1 * f2) / perAnnum;
 
       int.push(ipp);
-      intrestDuration.push(c.date);
+      // intrestDuration.push(c.date);
+      intrestDuration.push({ ipp, date: c.date, amount: (i + 1) * cb });
 
       return int;
     }, cb);
