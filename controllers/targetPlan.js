@@ -7,8 +7,8 @@ const createTP = async (req, res, next) => {
   try {
     const userAcct = await TargetPlan.findOne({ userID: req.body.userID });
 
-    if (userAcct)
-      return next(handleError(400, "you already have a Target account."));
+    // if (userAcct)
+    //   return next(handleError(400, "you already have a Target account."));
 
     const data = TargetPlan(req.body);
 
