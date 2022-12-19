@@ -212,21 +212,19 @@ const setSavingPeriod = async (req, res, next) => {
     const id = req.params.id;
     const { period } = req.body;
 
-    // const userAcct = await FlexPlan.findOne({ userID: id });
+    const userAcct = await FlexPlan.findOne({ userID: id });
     //Cast (run check)
 
-    // const plan = await FlexPlan.findOneAndUpdate(
-    //   { userID: id },
-    //   { $set: { savingPeriod: period } },
-    //   { new: true }
-    // );
+    const plan = await FlexPlan.findOneAndUpdate(
+      { userID: id },
+      { $set: { savingPeriod: period } },
+      { new: true }
+    );
 
     res.status(200).json({
-      // success: true,
-      // msg: `Great choice cadet `,
-      // plan,
-      period,
-      id,
+      success: true,
+      msg: `Great choice cadet `,
+      plan,
     });
   } catch (error) {
     next(error);
