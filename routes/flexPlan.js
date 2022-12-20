@@ -10,6 +10,7 @@ const {
   getFlexPlanAccount,
   setSavingPeriod,
   calcIntrest,
+  activatePlanAPI,
 } = require("../controllers/flexPlan");
 
 const router = express.Router();
@@ -29,10 +30,13 @@ router.put("/custom-duration/:id", customFlexPlanDuration);
 
 router.get("/get-flex-account/:id", getFlexPlanAccount);
 
-//NEW STUFF
+// End of custom plan
 
+//New Stuff Starts Here
 router.put("/saving-period/:id", setSavingPeriod);
 
 router.get("/calculate-intrest/:id", calcIntrest);
+
+router.put("/activate-plan/:id", activatePlanAPI);
 
 module.exports = router;

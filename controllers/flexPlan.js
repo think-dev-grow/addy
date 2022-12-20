@@ -379,6 +379,29 @@ const calcIntrest = async (req, res, next) => {
   }
 };
 
+const activatePlanAPI = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const userAcct = await FlexPlan.findOne({ userID: id });
+    //Cast (run check)
+
+    const plan = await FlexPlan.findOneAndUpdate(
+      { userID: id },
+      { $set: { activatePlan: true } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Plan has been activated `,
+      plan,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createFP,
   autoFlexPlanEarn,
@@ -389,4 +412,5 @@ module.exports = {
   getFlexPlanAccount,
   setSavingPeriod,
   calcIntrest,
+  activatePlanAPI,
 };

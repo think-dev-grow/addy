@@ -21,6 +21,7 @@ const FlexPlan = new mongoose.Schema(
     intrestPerMonth: { type: Array },
     breakdown: { type: Array },
     paymentDate: { type: String },
+    activatePlan: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
