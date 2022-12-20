@@ -235,13 +235,22 @@ const calcIntrest = async (req, res, next) => {
   try {
     const id = req.params.id;
 
+    let value;
+
     const flexAcct = await FlexPlan.findOne({ userID: id });
+
+    if (flexAcct.type === "custom") {
+      value = ~~flexAcct?.customDuration;
+    } else {
+      value = ~~flexAcct?.autoDuration;
+    }
 
     const month = new Date().getMonth();
     const calenderYears = new Date().getFullYear();
     const day = new Date().getDate();
 
-    const calenderLength = ~~flexAcct?.autoDuration;
+    //add custom duration
+    const calenderLength = value;
 
     const calender = [
       { val: 1, day: 31, date: { month: 1, year: calenderYears } },
@@ -364,7 +373,7 @@ const calcIntrest = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ plan, msg: "successful calculation", success: true });
+      .json({ plan, msg: "successful calculation", success: true, cb, value });
   } catch (error) {
     next(error);
   }
