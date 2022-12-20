@@ -15,9 +15,9 @@ dotenv.config();
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-const accountRoute = require("./routes/account");
 const targetPlan = require("./routes/targetPlan");
 const flexPlan = require("./routes/flexPlan");
+const dillaWallet = require("./routes/dillaWallet");
 
 const connectDB = () => {
   mongoose
@@ -30,9 +30,9 @@ app.use(express.json());
 
 app.use("/ardilla/api/auth", authRoutes);
 app.use("/ardilla/api/user", userRoutes);
-app.use("/ardilla/api/account", accountRoute);
 app.use("/ardilla/api/target-plan", targetPlan);
 app.use("/ardilla/api/flex-plan", flexPlan);
+app.use("/ardilla/api/dilla-wallet", dillaWallet);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
