@@ -1,4 +1,3 @@
-// var { SendMailClient } = require("zeptomail");
 const { SendMailClient } = require("zeptomail");
 const date = require("date-and-time");
 
