@@ -330,9 +330,9 @@ const calcIntrest = async (req, res, next) => {
     const R = 0.11;
     const perAnnum = 365;
     const cb =
-      flexAcct.type === "custom"
-        ? flexAcct.customSavingRate
-        : flexAcct.autoSavingRate;
+      targetAcct.type === "custom"
+        ? targetAcct.customSavingRate
+        : targetAcct.autoSavingRate;
 
     let int = [];
     let intrestDuration = [];
