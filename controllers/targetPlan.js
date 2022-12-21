@@ -358,7 +358,7 @@ const calcIntrest = async (req, res, next) => {
       return p + c;
     }, 0);
 
-    const plan = await FlexPlan.findOneAndUpdate(
+    const plan = await TargetPlan.findOneAndUpdate(
       { userID: id },
       {
         $set: {
