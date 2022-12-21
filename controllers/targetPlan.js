@@ -237,12 +237,12 @@ const calcIntrest = async (req, res, next) => {
 
     let value;
 
-    const flexAcct = await FlexPlan.findOne({ userID: id });
+    const targetAcct = await TargetPlan.findOne({ userID: id });
 
-    if (flexAcct.type === "custom") {
-      value = ~~flexAcct?.customDuration;
+    if (targetAcct.type === "custom") {
+      value = ~~targetAcct?.customDuration;
     } else {
-      value = ~~flexAcct?.autoDuration;
+      value = ~~targetAcct?.autoDuration;
     }
 
     const month = new Date().getMonth();
@@ -383,10 +383,10 @@ const activatePlanAPI = async (req, res, next) => {
   try {
     const id = req.params.id;
 
-    const userAcct = await FlexPlan.findOne({ userID: id });
+    const userAcct = await TargetPlan.findOne({ userID: id });
     //Cast (run check)
 
-    const plan = await FlexPlan.findOneAndUpdate(
+    const plan = await TargetPlan.findOneAndUpdate(
       { userID: id },
       { $set: { activatePlan: true } },
       { new: true }
