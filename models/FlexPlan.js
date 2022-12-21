@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 const FlexPlan = new mongoose.Schema(
   {
@@ -7,6 +8,8 @@ const FlexPlan = new mongoose.Schema(
     name: { type: String },
     earn: { type: Number, default: 0 },
     exp: { type: Number, default: 0 },
+    accountBalance: { type: Number, default: 0 },
+    accountNumber: { type: String, default: uuidv4() },
     autoSavingTarget: { type: Number, default: 0 },
     autoSavingRate: { type: Number, default: 0 },
     autoDuration: { type: String },

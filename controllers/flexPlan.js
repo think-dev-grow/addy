@@ -5,20 +5,40 @@ const handleError = require("../utils/error");
 
 const createFP = async (req, res, next) => {
   try {
-    const userAcct = await FlexPlan.findOne({ userID: req.body.userID });
+    const flexAcct = await FlexPlan.findOne({ userID: req.body.userID });
 
-    if (userAcct)
+    //create an acct if there's none
+    if (!flexAcct) {
+      const data = new FlexPlan(req.body);
+
+      const flexPlan = await data.save();
+
+      res.status(200).json({
+        msg: "wise people create a target and save",
+        flexPlan,
+        success: true,
+      });
+    }
+
+    //if there's an acct and it has been acctivated (delete it and start over )
+    if (flexAcct && !flexAcct.activatePlan) {
+      await FlexPlan.findByIdAndDelete(flexAcct._id);
+
+      const data = new FlexPlan(req.body);
+
+      const flexPlan = await data.save();
+
+      res.status(200).json({
+        msg: "congratulation on your new flex plan",
+        flexPlan,
+        success: true,
+      });
+    }
+
+    //if there an acct and it has been activated
+    if (flexAcct && flexAcct.activatePlan) {
       return next(handleError(400, "you already have a Flex account."));
-
-    const data = FlexPlan(req.body);
-
-    const flexPlan = await data.save();
-
-    res.status(200).json({
-      msg: "wise people creat a target and save",
-      flexPlan,
-      success: true,
-    });
+    }
   } catch (error) {
     next(error);
   }
