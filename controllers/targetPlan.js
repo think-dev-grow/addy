@@ -395,6 +395,7 @@ const activatePlanAPI = async (req, res, next) => {
     res.status(200).json({
       success: true,
       msg: `Plan has been activated `,
+
       plan,
     });
   } catch (error) {
