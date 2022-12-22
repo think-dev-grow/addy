@@ -175,9 +175,7 @@ const transferMoney = async (req, res, next) => {
       { new: true }
     );
 
-    res
-      .status(200)
-      .json({ flexTranscactionHistoryData, dillaTranscactionHistoryData });
+    res.status(200).json({ dilla });
   } catch (error) {
     next(error);
   }
