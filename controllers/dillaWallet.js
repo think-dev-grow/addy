@@ -183,4 +183,21 @@ const transferMoney = async (req, res, next) => {
   }
 };
 
-module.exports = { createDillaWallet, topUp, transferMoney };
+const getDillaWallet = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const dillaWallet = await DillaWallet.findOne({ userID: id });
+
+    res.status(200).json({ success: true, dillaWallet });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  createDillaWallet,
+  topUp,
+  transferMoney,
+  getDillaWallet,
+};
