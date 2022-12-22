@@ -391,9 +391,13 @@ const calcIntrest = async (req, res, next) => {
       { new: true }
     );
 
-    res
-      .status(200)
-      .json({ plan, msg: "successful calculation", success: true, cb, value });
+    res.status(200).json({
+      plan,
+      msg: "successful calculation",
+      success: true,
+      cb,
+      value,
+    });
   } catch (error) {
     next(error);
   }

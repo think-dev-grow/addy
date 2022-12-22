@@ -25,6 +25,7 @@ const FlexPlan = new mongoose.Schema(
     breakdown: { type: Array },
     paymentDate: { type: String },
     activatePlan: { type: Boolean, default: false },
+    transcactionHistory: { type: Array, default: [] },
   },
   { timestamps: true }
 );
