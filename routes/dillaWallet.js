@@ -15,6 +15,6 @@ router.put("/top-up-account/:id", topUp);
 
 router.put("/transfer/:id", transferMoney);
 
-router.get("/get-dilla-account/:id", getDillaWallet);
+router.get("/get-dilla-wallet/:id", getDillaWallet);
 
 module.exports = router;
