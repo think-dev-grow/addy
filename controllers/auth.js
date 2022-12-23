@@ -260,6 +260,52 @@ const securityQusetion = async (req, res, next) => {
   }
 };
 
+//mobile-Verification
+const mobileVeri = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { pin } = req.body;
+
+    const data = await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { mobilePinId: pin },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Successfull , remeber ${data.kodeHex} don't share you pin with anyone`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateMobileVerification = async (req, res, next) => {
+  try {
+    const check = await User.findById(req.params.id);
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { verified: "mv" },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      // msg: `Dont worry ${sqUpdate.kodeHex} , Your secret is safe with us`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //login API
 const login = async (req, res, next) => {
   try {
@@ -482,28 +528,6 @@ const resetPasswordAPI = async (req, res, next) => {
   }
 };
 
-const mobileVeri = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const data = await User.findOneAndUpdate(
-      { _id: id },
-      {
-        verified: "mv",
-      },
-      { new: true }
-    );
-
-    res.status(200).json({
-      success: true,
-      msg: `Successfull , remeber ${data.kodeHex} don't share you pin with anyone`,
-      data,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const selectPin = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -558,4 +582,5 @@ module.exports = {
   selectPin,
   wrongContact,
   mobileVeri,
+  updateMobileVerification,
 };

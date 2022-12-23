@@ -16,6 +16,7 @@ const {
   selectPin,
   wrongContact,
   mobileVeri,
+  updateMobileVerification,
 } = require("../controllers/auth");
 
 const verifyTokenMiddleware = require("../utils/verifyToken");
@@ -50,6 +51,8 @@ router.post("/set-transaction-pin/:id", selectPin);
 
 router.put("/wrong-contact/:id", wrongContact);
 
-router.get("/mobile/:id", mobileVeri);
+router.put("/mobile/:id", mobileVeri);
+
+router.get("/mobile-status-update/:id", updateMobileVerification);
 
 module.exports = router;

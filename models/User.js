@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema(
     verified: { type: String, default: "activated" },
     logDetails: { type: Object },
     transactionPin: { type: String, default: "", trim: true },
+    mobilePinId: { type: String, default: "" },
   },
   { timestamps: true }
 );
