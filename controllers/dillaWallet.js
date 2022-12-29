@@ -1,6 +1,7 @@
 const DillaWallet = require("../models/DillaWallet");
 const FlexPlan = require("../models/FlexPlan");
 const User = require("../models/User");
+const SanAccount = require("../models/SanAccount");
 var abbreviate = require("number-abbreviate");
 
 const handleError = require("../utils/error");
@@ -193,9 +194,104 @@ const getDillaWallet = async (req, res, next) => {
   }
 };
 
+const transferToMySan = async (req, res, next) => {
+  try {
+    const { amount, accountNumber, pin } = req.body;
+    const id = req.params.id;
+
+    const day = new Date().getDay();
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
+
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
+
+    const check = minute <= 9 ? `0${minute}` : minute;
+
+    const sanAcct = await SanAccount.findOne({
+      userID: id,
+    });
+
+    const dillaWallet = await DillaWallet.findOne({
+      userID: id,
+    });
+
+    const user = await User.findById(id);
+
+    if (!sanAcct)
+      return next(handleError(400, "there no account with this number"));
+
+    if (sanAcct.userID !== id)
+      return next(handleError(400, "This is not your account"));
+
+    if (amount > dillaWallet.accountBalance)
+      return next(
+        handleError(
+          400,
+          "insufficient fund , please top up your dilla wallet first"
+        )
+      );
+
+    if (pin !== user.transactionPin)
+      return next(handleError(400, "Incorrect pin"));
+
+    const dillacurrentBalance = dillaWallet.accountBalance - amount;
+    const sancurrentBalance = sanAcct.accountBalance + amount;
+
+    const dillaTranscactionHistoryData = {
+      amount,
+      date: `${day}-${month}-${year}`,
+      time: `${hour}:${check}`,
+      transactionType: "Debit",
+      dillacurrentBalance,
+    };
+
+    const dilla = await DillaWallet.findOneAndUpdate(
+      { userID: id },
+      {
+        $set: {
+          accountBalance: dillacurrentBalance,
+          transcactionHistory: [
+            ...dillaWallet.transcactionHistory,
+            dillaTranscactionHistoryData,
+          ],
+        },
+      },
+      { new: true }
+    );
+
+    const sanTranscactionHistoryData = {
+      amount,
+      date: `${day}-${month}-${year}`,
+      time: `${hour}:${check}`,
+      transactionType: "Credit",
+      sancurrentBalance,
+    };
+
+    const san = await SanAccount.findOneAndUpdate(
+      { userID: id },
+      {
+        $set: {
+          accountBalance: sancurrentBalance,
+          transcactionHistory: [
+            ...sanAcct.transcactionHistory,
+            sanTranscactionHistoryData,
+          ],
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ san });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createDillaWallet,
   topUp,
   transferMoney,
   getDillaWallet,
+  transferToMySan,
 };

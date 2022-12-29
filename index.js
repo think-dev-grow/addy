@@ -18,6 +18,7 @@ const userRoutes = require("./routes/user");
 const targetPlan = require("./routes/targetPlan");
 const flexPlan = require("./routes/flexPlan");
 const dillaWallet = require("./routes/dillaWallet");
+const sanAccount = require("./routes/sanAccount");
 
 const connectDB = () => {
   mongoose
@@ -33,6 +34,7 @@ app.use("/ardilla/api/user", userRoutes);
 app.use("/ardilla/api/target-plan", targetPlan);
 app.use("/ardilla/api/flex-plan", flexPlan);
 app.use("/ardilla/api/dilla-wallet", dillaWallet);
+app.use("/ardilla/api/san-account", sanAccount);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
