@@ -7,7 +7,6 @@ var abbreviate = require("number-abbreviate");
 const handleError = require("../utils/error");
 
 const { v4: uuidv4 } = require("uuid");
-const { isObjectIdOrHexString } = require("mongoose");
 
 const createDillaWallet = async (req, res, next) => {
   try {
@@ -114,9 +113,6 @@ const transferMoneyToDilla = async (req, res, next) => {
 
     if (!to) return next(handleError(400, "there no account with this number"));
 
-    // if (flexAcct.userID !== id)
-    //   return next(handleError(400, "This is not your account"));
-
     if (amount > from.accountBalance)
       return next(
         handleError(
@@ -128,16 +124,12 @@ const transferMoneyToDilla = async (req, res, next) => {
     if (pin !== user.transactionPin)
       return next(handleError(400, "Incorrect pin"));
 
-    const fromCurrentBalance = from.accountBalance - amount;
-    const toCurrentBalance = to.accountBalance + amount;
-
     const fromTranscactionHistoryData = {
       amount,
       date: `${day}-${month}-${year}`,
       time: `${hour}:${check}`,
       transactionType: "Debit",
       status: "Pending",
-      fromCurrentBalance,
       ots,
     };
 
@@ -145,7 +137,6 @@ const transferMoneyToDilla = async (req, res, next) => {
       { userID: id },
       {
         $set: {
-          accountBalance: fromCurrentBalance,
           transcactionHistory: [
             ...from.transcactionHistory,
             fromTranscactionHistoryData,
@@ -161,7 +152,6 @@ const transferMoneyToDilla = async (req, res, next) => {
       time: `${hour}:${check}`,
       transactionType: "Credit",
       status: "Pending",
-      toCurrentBalance,
       ots,
     };
 
@@ -169,7 +159,6 @@ const transferMoneyToDilla = async (req, res, next) => {
       { userID: userID },
       {
         $set: {
-          accountBalance: toCurrentBalance,
           transcactionHistory: [
             ...to.transcactionHistory,
             toTranscactionHistoryData,
