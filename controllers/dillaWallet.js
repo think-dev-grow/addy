@@ -88,9 +88,9 @@ const topUp = async (req, res, next) => {
   }
 };
 
-const transferMoney = async (req, res, next) => {
+const transferMoneyToDilla = async (req, res, next) => {
   try {
-    const { amount, accountNumber, pin } = req.body;
+    const { amount, pin, userID, ots } = req.body;
     const id = req.params.id;
 
     const day = new Date().getDay();
@@ -102,23 +102,22 @@ const transferMoney = async (req, res, next) => {
 
     const check = minute <= 9 ? `0${minute}` : minute;
 
-    const flexAcct = await FlexPlan.findOne({
-      accountNumber: accountNumber,
+    const to = await DillaWallet.findOne({
+      userID: userID,
     });
 
-    const dillaWallet = await DillaWallet.findOne({
+    const from = await DillaWallet.findOne({
       userID: id,
     });
 
     const user = await User.findById(id);
 
-    if (!flexAcct)
-      return next(handleError(400, "there no account with this number"));
+    if (!to) return next(handleError(400, "there no account with this number"));
 
-    if (flexAcct.userID !== id)
-      return next(handleError(400, "This is not your account"));
+    // if (flexAcct.userID !== id)
+    //   return next(handleError(400, "This is not your account"));
 
-    if (amount > dillaWallet.accountBalance)
+    if (amount > from.accountBalance)
       return next(
         handleError(
           400,
@@ -129,54 +128,149 @@ const transferMoney = async (req, res, next) => {
     if (pin !== user.transactionPin)
       return next(handleError(400, "Incorrect pin"));
 
-    const dillacurrentBalance = dillaWallet.accountBalance - amount;
-    const flexcurrentBalance = flexAcct.accountBalance + amount;
+    const fromCurrentBalance = from.accountBalance - amount;
+    const toCurrentBalance = to.accountBalance + amount;
 
-    const dillaTranscactionHistoryData = {
+    const fromTranscactionHistoryData = {
       amount,
       date: `${day}-${month}-${year}`,
       time: `${hour}:${check}`,
       transactionType: "Debit",
-      dillacurrentBalance,
+      status: "Pending",
+      fromCurrentBalance,
+      ots,
     };
 
-    const dilla = await DillaWallet.findOneAndUpdate(
+    const fromDillaWallet = await DillaWallet.findOneAndUpdate(
       { userID: id },
       {
         $set: {
-          accountBalance: dillacurrentBalance,
+          accountBalance: fromCurrentBalance,
           transcactionHistory: [
-            ...dillaWallet.transcactionHistory,
-            dillaTranscactionHistoryData,
+            ...from.transcactionHistory,
+            fromTranscactionHistoryData,
           ],
         },
       },
       { new: true }
     );
 
-    const flexTranscactionHistoryData = {
+    const toTranscactionHistoryData = {
       amount,
       date: `${day}-${month}-${year}`,
       time: `${hour}:${check}`,
       transactionType: "Credit",
-      flexcurrentBalance,
+      status: "Pending",
+      toCurrentBalance,
+      ots,
     };
 
-    const flex = await FlexPlan.findOneAndUpdate(
-      { userID: id },
+    const toDillaWallet = await DillaWallet.findOneAndUpdate(
+      { userID: userID },
       {
         $set: {
-          accountBalance: flexcurrentBalance,
+          accountBalance: toCurrentBalance,
           transcactionHistory: [
-            ...flexAcct.transcactionHistory,
-            flexTranscactionHistoryData,
+            ...to.transcactionHistory,
+            toTranscactionHistoryData,
           ],
         },
       },
       { new: true }
     );
 
-    res.status(200).json({ dilla });
+    res.status(200).json({ toDillaWallet, fromDillaWallet });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const requestMoney = async (req, res, next) => {
+  try {
+    const { amount, userID } = req.body;
+    const id = req.params.id;
+
+    const day = new Date().getDay();
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
+
+    const hour = new Date().getHours();
+    const minute = new Date().getMinutes();
+
+    const check = minute <= 9 ? `0${minute}` : minute;
+
+    const to = await DillaWallet.findOne({
+      userID: userID,
+    });
+
+    const from = await DillaWallet.findOne({
+      userID: id,
+    });
+
+    const user = await User.findById(id);
+
+    if (!to) return next(handleError(400, "there no account with this number"));
+
+    // if (flexAcct.userID !== id)
+    //   return next(handleError(400, "This is not your account"));
+
+    // if (amount > from.accountBalance)
+    //   return next(
+    //     handleError(
+    //       400,
+    //       "insufficient fund , please top up your dilla wallet first"
+    //     )
+    //   );
+
+    // if (pin !== user.transactionPin)
+    //   return next(handleError(400, "Incorrect pin"));
+
+    // const fromCurrentBalance = from.accountBalance - amount;
+    // const toCurrentBalance = to.accountBalance + amount;
+
+    const fromTranscactionHistoryData = {
+      amount,
+      date: `${day}-${month}-${year}`,
+      time: `${hour}:${check}`,
+      transactionType: "Request",
+      status: "Pending",
+    };
+
+    const fromDillaWallet = await DillaWallet.findOneAndUpdate(
+      { userID: id },
+      {
+        $set: {
+          transcactionHistory: [
+            ...from.transcactionHistory,
+            fromTranscactionHistoryData,
+          ],
+        },
+      },
+      { new: true }
+    );
+
+    const toTranscactionHistoryData = {
+      amount,
+      date: `${day}-${month}-${year}`,
+      time: `${hour}:${check}`,
+      transactionType: "Request",
+      status: "Pending",
+    };
+
+    const toDillaWallet = await DillaWallet.findOneAndUpdate(
+      { userID: userID },
+      {
+        $set: {
+          transcactionHistory: [
+            ...to.transcactionHistory,
+            toTranscactionHistoryData,
+          ],
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ toDillaWallet, fromDillaWallet });
   } catch (error) {
     next(error);
   }
@@ -291,7 +385,8 @@ const transferToMySan = async (req, res, next) => {
 module.exports = {
   createDillaWallet,
   topUp,
-  transferMoney,
+  transferMoneyToDilla,
   getDillaWallet,
   transferToMySan,
+  requestMoney,
 };
