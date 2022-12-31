@@ -19,7 +19,6 @@ const createDillaWallet = async (req, res, next) => {
       return next(handleError(400, "you already have a dilla wallet account."));
 
     const dwDetails = new DillaWallet({
-      accountNumber: uuidv4(),
       userID: req.body.userID,
       accountName: name,
     });
