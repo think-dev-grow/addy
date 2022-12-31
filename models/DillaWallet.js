@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const randomize = require("randomatic");
 
 const DillaWallet = new mongoose.Schema(
   {
-    accountNumber: { type: String },
-    accountName: { type: String },
+    // accountName: { type: String },
+    accountNumber: { type: String, default: randomize("0", 10) },
     accountBalance: { type: Number, default: 0 },
     userID: { type: String },
     transcactionHistory: { type: Array, default: [] },

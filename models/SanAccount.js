@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+const randomize = require("randomatic");
 
 const SanAccount = new mongoose.Schema(
   {
     accountName: { type: String },
-    accountNumber: { type: String, default: uuidv4() },
+    accountNumber: { type: String, default: randomize("0", 10) },
     accountBalance: { type: Number, default: 0 },
     userID: { type: String },
     transcactionHistory: { type: Array, default: [] },
