@@ -12,12 +12,16 @@ const createDillaWallet = async (req, res, next) => {
   try {
     const dillaWallet = await DillaWallet.findOne({ userID: req.body.userID });
 
+    const user = await User.findById(req.body.userID);
+    const name = `${user.firstname} ${user.lastname}`;
+
     if (dillaWallet)
       return next(handleError(400, "you already have a dilla wallet account."));
 
     const dwDetails = new DillaWallet({
       accountNumber: uuidv4(),
       userID: req.body.userID,
+      accountName: name,
     });
 
     const data = await dwDetails.save();
