@@ -37,4 +37,28 @@ const getUser = async (req, res, next) => {
   }
 };
 
-module.exports = { getUser, getUserById };
+const profileImage = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const { profilePic } = req.body;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { profilePic: profilePic },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ success: true, msg: "profile pic uploaded" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getUser, getUserById, profileImage };
