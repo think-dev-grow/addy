@@ -254,6 +254,7 @@ const securityQusetion = async (req, res, next) => {
       success: true,
       msg: `Dont worry ${sqUpdate.kodeHex} , Your secret is safe with us`,
       data,
+      anser: sq.answer,
     });
   } catch (error) {
     next(error);
@@ -266,10 +267,16 @@ const mobileVeri = async (req, res, next) => {
     const { id } = req.params;
     const { pin } = req.body;
 
+    const check = await User.findById(req.params.id);
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const point = check.kycPoints + 25;
+
     const data = await User.findOneAndUpdate(
       { _id: id },
       {
-        $set: { mobilePinId: pin },
+        $set: { mobilePinId: pin, kycPoints: point },
       },
       { new: true }
     );
@@ -376,8 +383,6 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
-
-//test
 
 const refreshToken = async (req, res, next) => {
   try {
@@ -564,7 +569,37 @@ const selectPin = async (req, res, next) => {
   }
 };
 
-// const ardillaIntrestCalc = async (req , res)
+const addBVN = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { bvn } = req.body;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(404, "User does not exist."));
+
+    if (bvn.length < 11 || bvn.length > 11)
+      return next(handleError(404, "incorrect BVN"));
+
+    const point = user.kycPoints + 25;
+
+    const data = await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { bvn: bvn, kycPoints: point },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `Bvn registration successfull`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   sendOTP,
@@ -583,4 +618,5 @@ module.exports = {
   wrongContact,
   mobileVeri,
   updateMobileVerification,
+  addBVN,
 };

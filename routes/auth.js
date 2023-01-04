@@ -17,6 +17,7 @@ const {
   wrongContact,
   mobileVeri,
   updateMobileVerification,
+  addBVN,
 } = require("../controllers/auth");
 
 const verifyTokenMiddleware = require("../utils/verifyToken");
@@ -32,6 +33,8 @@ router.post("/complete-profile/:id", completeProfile);
 router.delete("/wrong-email/:id", wrongEmail);
 
 router.put("/security-question/:id", securityQusetion);
+
+router.put("/add-bvn/:id", addBVN);
 
 router.post("/login", login);
 
