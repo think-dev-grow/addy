@@ -63,24 +63,30 @@ const profileImage = async () => {
   );
 
   try {
-    const id = req.params.id;
-
-    const user = await User.findById(id);
-
-    if (!user) return next(handleError(400, "user does not exist"));
-
-    await User.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: { profilePic: uploadImg.url },
-      },
-      { new: true }
-    );
-
-    res.status(200).json({ success: true, msg: "profile pic uploaded" });
+    res.status(200).json(uploadImg);
   } catch (error) {
-    next(error);
+    console.log(error);
   }
+
+  // try {
+  //   const id = req.params.id;
+
+  //   const user = await User.findById(id);
+
+  //   if (!user) return next(handleError(400, "user does not exist"));
+
+  //   await User.findOneAndUpdate(
+  //     { _id: id },
+  //     {
+  //       $set: { profilePic: uploadImg.url },
+  //     },
+  //     { new: true }
+  //   );
+
+  //   res.status(200).json({ success: true, msg: "profile pic uploaded" });
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 // const profileImage = async (req, res, next) => {
