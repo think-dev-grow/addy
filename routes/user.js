@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.get("/getUser/:token", getUser);
 router.get("/find/:id", getUserById);
-router.put("/profile-pic/:id", profileImage);
+router.post("/profile-pic/:id", profileImage);
 
 module.exports = router;
