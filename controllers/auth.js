@@ -543,7 +543,7 @@ const selectPin = async (req, res, next) => {
     if (!user) return next(handleError(404, "User does not exist."));
 
     if (code !== confirmCode)
-      return next(handleError(404, `Hey ${user.kodeHex}, password dont match`));
+      return next(handleError(404, `Hey ${user.kodeHex}, pin dont match`));
 
     const userData = await User.findByIdAndUpdate(
       { _id: id },

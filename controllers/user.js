@@ -2,6 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const handleError = require("../utils/error");
 const { fileSizeFormatter } = require("../utils/uploadFile");
+const bcrypt = require("bcrypt");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -83,62 +84,6 @@ const profileImage = async (req, res, next) => {
   }
 };
 
-// const { image } = req.body;
-
-// console.log(image);
-
-// const uploadImg = await cloudinary.uploader.upload(
-//   image,
-//   {
-//     upload_preset: "ifaoski1",
-//     public_id: `${Date.now()}`,
-//     allowed_formats: ["png", "jpg", "jpeg", "svg", "ico", "jfif", "webp"],
-//   },
-//   function (error, result) {
-//     if (error) {
-//       console.log(error);
-//     }
-//     console.log(result);
-//   }
-// );
-
-// try {
-//   res.status(200).json(uploadImg);
-// } catch (error) {
-//   console.log(error);
-// }
-
-// try {
-
-//   res.status(200).json({ success: true, msg: "profile pic uploaded" });
-// } catch (error) {
-//   next(error);
-// }
-
-// const profileImage = async (req, res, next) => {
-//   try {
-//     const id = req.params.id;
-
-//     const { profilePic } = req.body;
-
-//     const user = await User.findById(id);
-
-//     if (!user) return next(handleError(400, "user does not exist"));
-
-//     await User.findOneAndUpdate(
-//       { _id: id },
-//       {
-//         $set: { profilePic: profilePic },
-//       },
-//       { new: true }
-//     );
-
-//     res.status(200).json({ success: true, });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 const nextOfKin = async (req, res, next) => {
   try {
     const check = await User.findById(req.params.id);
@@ -163,4 +108,179 @@ const nextOfKin = async (req, res, next) => {
   }
 };
 
-module.exports = { getUser, getUserById, profileImage, nextOfKin };
+const changePassword = async (req, res, next) => {
+  try {
+    const { oldPassword, password } = req.body;
+
+    const check = await User.findById(req.params.id);
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const validPassword = await bcrypt.compare(oldPassword, check.password);
+
+    if (!validPassword)
+      return next(handleError(404, "old password don't math"));
+
+    const salt = await bcrypt.genSalt(10);
+
+    const hash = bcrypt.hashSync(password, salt);
+
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { password: hash } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `password change  successfully`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const changePin = async (req, res, next) => {
+  try {
+    const { pin } = req.body;
+
+    const check = await User.findById(req.params.id);
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { transactionPin: pin } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `your pin has been changed`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadIdFront = async (req, res, next) => {
+  try {
+    let fileData = {};
+
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    let uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      folder: "kyc",
+      resource_type: "image",
+    });
+
+    fileData = {
+      fileName: req.file.originalname,
+      filePath: uploadedFile.secure_url,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { kyc: { ...user.kyc, idFront: uploadedFile.secure_url } },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "uploaded successfully " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadIdBack = async (req, res, next) => {
+  try {
+    let fileData = {};
+
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    // if (req.file) {
+    let uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      folder: "kyc",
+      resource_type: "image",
+    });
+
+    fileData = {
+      fileName: req.file.originalname,
+      filePath: uploadedFile.secure_url,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { kyc: { ...user.kyc, idBack: uploadedFile.secure_url } },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "uploaded successfully " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const uploadUtilityBill = async (req, res, next) => {
+  try {
+    let fileData = {};
+
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    // if (req.file) {
+    let uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      folder: "kyc",
+      resource_type: "image",
+    });
+
+    fileData = {
+      fileName: req.file.originalname,
+      filePath: uploadedFile.secure_url,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { kyc: { ...user.kyc, utilityBill: uploadedFile.secure_url } },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "uploaded successfully " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getUser,
+  getUserById,
+  profileImage,
+  nextOfKin,
+  uploadIdFront,
+  uploadIdBack,
+  uploadUtilityBill,
+};
