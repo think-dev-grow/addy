@@ -8,14 +8,10 @@ const path = require("path");
 
 const app = express();
 app.use(cors());
-
 app.use(cookieParser());
-
 dotenv.config();
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-//test
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");

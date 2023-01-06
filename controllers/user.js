@@ -192,7 +192,7 @@ const uploadIdFront = async (req, res, next) => {
       {
         $set: {
           kyc: { ...user.kyc, idFront: uploadedFile.secure_url },
-          // idFrontStatus: "pending",
+          idFrontStatus: "pending",
         },
       },
       { new: true }
