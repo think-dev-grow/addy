@@ -139,4 +139,28 @@ const profileImage = async (req, res, next) => {
 //   }
 // };
 
-module.exports = { getUser, getUserById, profileImage };
+const nextOfKin = async (req, res, next) => {
+  try {
+    const check = await User.findById(req.params.id);
+
+    if (!check) return next(handleError(404, "User does not exist."));
+
+    const nextOfKinDetails = req.body.nextOfKin;
+
+    const data = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { nextOfKin: nextOfKinDetails } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      msg: `data uploaded successfully`,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getUser, getUserById, profileImage, nextOfKin };

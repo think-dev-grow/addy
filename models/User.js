@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema(
     dhid: { type: String, default: "" },
     uid: { type: String, default: "" },
     kycPoints: { type: Number, default: 0 },
+    nextOfKin: { type: Object, default: {} },
     profilePic: { type: String, default: "" },
     securityQusetion: { type: Object },
     ipAddress: { type: String, default: "" },
