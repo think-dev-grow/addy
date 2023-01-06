@@ -232,7 +232,7 @@ const uploadIdBack = async (req, res, next) => {
       {
         $set: {
           kyc: { ...user.kyc, idBack: uploadedFile.secure_url },
-          // idBackStatus: "pending",
+          idBackStatus: "pending",
         },
       },
       { new: true }
@@ -272,7 +272,7 @@ const uploadUtilityBill = async (req, res, next) => {
       {
         $set: {
           kyc: { ...user.kyc, utilityBill: uploadedFile.secure_url },
-          // utilityBillStatus: "pending",
+          utilityBillStatus: "pending",
         },
       },
       { new: true }
