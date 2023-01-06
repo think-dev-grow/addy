@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const handleError = require("../utils/error");
+const { fileSizeFormatter } = require("../utils/uploadFile");
+
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -44,50 +46,74 @@ const getUser = async (req, res, next) => {
   }
 };
 
-const profileImage = async () => {
-  const { image } = req.body;
-
-  const uploadImg = await cloudinary.uploader.upload(
-    image,
-    {
-      upload_preset: "ifaoski1",
-      public_id: `${Date.now()}`,
-      allowed_formats: ["png", "jpg", "jpeg", "svg", "ico", "jfif", "webp"],
-    },
-    function (error, result) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(result);
-    }
-  );
-
+const profileImage = async (req, res, next) => {
   try {
-    res.status(200).json(uploadImg);
+    let fileData = {};
+
+    // if (req.file) {
+    let uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      folder: "Profile Pic",
+      resource_type: "image",
+    });
+
+    fileData = {
+      fileName: req.file.originalname,
+      filePath: uploadedFile.secure_url,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+    // }
+
+    res.status(200).json(fileData);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
-
-  // try {
-  //   const id = req.params.id;
-
-  //   const user = await User.findById(id);
-
-  //   if (!user) return next(handleError(400, "user does not exist"));
-
-  //   await User.findOneAndUpdate(
-  //     { _id: id },
-  //     {
-  //       $set: { profilePic: uploadImg.url },
-  //     },
-  //     { new: true }
-  //   );
-
-  //   res.status(200).json({ success: true, msg: "profile pic uploaded" });
-  // } catch (error) {
-  //   next(error);
-  // }
 };
+
+// const { image } = req.body;
+
+// console.log(image);
+
+// const uploadImg = await cloudinary.uploader.upload(
+//   image,
+//   {
+//     upload_preset: "ifaoski1",
+//     public_id: `${Date.now()}`,
+//     allowed_formats: ["png", "jpg", "jpeg", "svg", "ico", "jfif", "webp"],
+//   },
+//   function (error, result) {
+//     if (error) {
+//       console.log(error);
+//     }
+//     console.log(result);
+//   }
+// );
+
+// try {
+//   res.status(200).json(uploadImg);
+// } catch (error) {
+//   console.log(error);
+// }
+
+// try {
+//   const id = req.params.id;
+
+//   const user = await User.findById(id);
+
+//   if (!user) return next(handleError(400, "user does not exist"));
+
+//   await User.findOneAndUpdate(
+//     { _id: id },
+//     {
+//       $set: { profilePic: uploadImg.url },
+//     },
+//     { new: true }
+//   );
+
+//   res.status(200).json({ success: true, msg: "profile pic uploaded" });
+// } catch (error) {
+//   next(error);
+// }
 
 // const profileImage = async (req, res, next) => {
 //   try {
