@@ -69,13 +69,13 @@ const profileImage = async (req, res, next) => {
       fileSize: fileSizeFormatter(req.file.size, 2),
     };
 
-    await User.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: { profilePic: uploadedFile.secure_url },
-      },
-      { new: true }
-    );
+    // await User.findOneAndUpdate(
+    //   { _id: id },
+    //   {
+    //     $set: { profilePic: uploadedFile.secure_url },
+    //   },
+    //   { new: true }
+    // );
 
     res.status(200).json({ fileData, msg: "picture uploaded successfully" });
   } catch (error) {
