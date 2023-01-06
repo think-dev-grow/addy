@@ -24,6 +24,10 @@ const flexPlan = require("./routes/flexPlan");
 const dillaWallet = require("./routes/dillaWallet");
 const sanAccount = require("./routes/sanAccount");
 
+app.get("/", (req, res) => {
+  res.send("welcome ardilla home");
+});
+
 const connectDB = () => {
   mongoose
     .connect(process.env.MONGO)
