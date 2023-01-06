@@ -190,7 +190,10 @@ const uploadIdFront = async (req, res, next) => {
     await User.findOneAndUpdate(
       { _id: id },
       {
-        $set: { kyc: { ...user.kyc, idFront: uploadedFile.secure_url } },
+        $set: {
+          kyc: { ...user.kyc, idFront: uploadedFile.secure_url },
+          idFrontStatus: "pending",
+        },
       },
       { new: true }
     );
@@ -227,7 +230,10 @@ const uploadIdBack = async (req, res, next) => {
     await User.findOneAndUpdate(
       { _id: id },
       {
-        $set: { kyc: { ...user.kyc, idBack: uploadedFile.secure_url } },
+        $set: {
+          kyc: { ...user.kyc, idBack: uploadedFile.secure_url },
+          idBackStatus: "pending",
+        },
       },
       { new: true }
     );
@@ -264,7 +270,10 @@ const uploadUtilityBill = async (req, res, next) => {
     await User.findOneAndUpdate(
       { _id: id },
       {
-        $set: { kyc: { ...user.kyc, utilityBill: uploadedFile.secure_url } },
+        $set: {
+          kyc: { ...user.kyc, utilityBill: uploadedFile.secure_url },
+          utilityBillStatus: "pending",
+        },
       },
       { new: true }
     );
