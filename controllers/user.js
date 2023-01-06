@@ -50,6 +50,12 @@ const profileImage = async (req, res, next) => {
   try {
     let fileData = {};
 
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
     // if (req.file) {
     let uploadedFile = await cloudinary.uploader.upload(req.file.path, {
       folder: "Profile Pic",
@@ -62,9 +68,16 @@ const profileImage = async (req, res, next) => {
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2),
     };
-    // }
 
-    res.status(200).json(fileData);
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: { profilePic: uploadedFile.secure_url },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "picture uploaded successfully" });
   } catch (error) {
     next(error);
   }
@@ -96,19 +109,6 @@ const profileImage = async (req, res, next) => {
 // }
 
 // try {
-//   const id = req.params.id;
-
-//   const user = await User.findById(id);
-
-//   if (!user) return next(handleError(400, "user does not exist"));
-
-//   await User.findOneAndUpdate(
-//     { _id: id },
-//     {
-//       $set: { profilePic: uploadImg.url },
-//     },
-//     { new: true }
-//   );
 
 //   res.status(200).json({ success: true, msg: "profile pic uploaded" });
 // } catch (error) {
@@ -133,7 +133,7 @@ const profileImage = async (req, res, next) => {
 //       { new: true }
 //     );
 
-//     res.status(200).json({ success: true, msg: "profile pic uploaded" });
+//     res.status(200).json({ success: true, });
 //   } catch (error) {
 //     next(error);
 //   }
