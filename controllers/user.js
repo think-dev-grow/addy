@@ -284,6 +284,54 @@ const uploadUtilityBill = async (req, res, next) => {
   }
 };
 
+const decline = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          utilityBillStatus: "decline",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const approve = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          utilityBillStatus: "approve",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getUser,
   getUserById,
@@ -292,4 +340,6 @@ module.exports = {
   uploadIdFront,
   uploadIdBack,
   uploadUtilityBill,
+  decline,
+  approve,
 };
