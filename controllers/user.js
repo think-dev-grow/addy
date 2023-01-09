@@ -442,17 +442,22 @@ const genrateAccount = async (req, res, next) => {
       user.idFrontStatus === "approve" &&
       user.utilityBillStatus === "approve"
     ) {
+      const accountNumber = randomize("0", 10);
+
       await User.findOneAndUpdate(
         { _id: id },
         {
           $set: {
-            uid: randomize("0", 10),
+            uid: accountNumber,
           },
         },
         { new: true }
       );
 
-      res.status(200).json({ fileData, msg: "files was decline " });
+      res.status(200).json({
+        accountNumber,
+        msg: `hey ${user.kodeHex} your account number is ${accountNumber}`,
+      });
     } else {
       return next(handleError(400, "finish your Kyc first"));
     }
