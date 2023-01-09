@@ -458,9 +458,10 @@ const genrateAccount = async (req, res, next) => {
         accountNumber,
         msg: `hey ${user.kodeHex} your account number is ${accountNumber}`,
       });
-    } else {
-      return next(handleError(400, "finish your Kyc first"));
     }
+    // } else {
+    //   return next(handleError(400, "finish your Kyc first"));
+    // }
   } catch (error) {
     next(error);
   }
