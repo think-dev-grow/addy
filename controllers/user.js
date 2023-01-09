@@ -437,17 +437,25 @@ const genrateAccount = async (req, res, next) => {
 
     if (!user) return next(handleError(400, "user does not exist"));
 
-    await User.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: {
-          uid: randomize("0", 10),
+    if (
+      user.idBackStatus === "approve" &&
+      user.idFrontStatus === "approve" &&
+      user.utilityBillStatus === "approve"
+    ) {
+      await User.findOneAndUpdate(
+        { _id: id },
+        {
+          $set: {
+            uid: randomize("0", 10),
+          },
         },
-      },
-      { new: true }
-    );
+        { new: true }
+      );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+      res.status(200).json({ fileData, msg: "files was decline " });
+    } else {
+      return next(handleError(400, "finish your Kyc first"));
+    }
   } catch (error) {
     next(error);
   }
