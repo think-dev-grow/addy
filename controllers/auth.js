@@ -155,7 +155,7 @@ const completeProfile = async (req, res, next) => {
 
     check.firstname = req.body.firstname;
     check.lastname = req.body.lastname;
-    check.uid = `30${rn(options)}${random.integer(10, 99)}${randomize("0", 3)}`;
+    // check.uid = `30${rn(options)}${random.integer(10, 99)}${randomize("0", 3)}`;
     check.dhid = crypto.randomBytes(64).toString("hex");
     check.contact = req.body.contact;
     check.password = hash;
