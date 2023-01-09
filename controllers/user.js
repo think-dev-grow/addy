@@ -303,7 +303,7 @@ const declineUtilityBill = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "utility bill  decline " });
   } catch (error) {
     next(error);
   }
@@ -327,7 +327,7 @@ const approveUtility = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "utility bill approved " });
   } catch (error) {
     next(error);
   }
@@ -351,7 +351,7 @@ const declineIdFront = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "id front decline " });
   } catch (error) {
     next(error);
   }
@@ -375,7 +375,7 @@ const approveIdFront = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "id front approved " });
   } catch (error) {
     next(error);
   }
@@ -399,7 +399,7 @@ const declineIdBack = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "id back decline " });
   } catch (error) {
     next(error);
   }
@@ -423,7 +423,7 @@ const approveIdBack = async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({ fileData, msg: "files was decline " });
+    res.status(200).json({ fileData, msg: "id back approved " });
   } catch (error) {
     next(error);
   }
