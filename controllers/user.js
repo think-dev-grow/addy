@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const handleError = require("../utils/error");
 const { fileSizeFormatter } = require("../utils/uploadFile");
 const bcrypt = require("bcrypt");
+const randomize = require("randomatic");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -284,7 +285,7 @@ const uploadUtilityBill = async (req, res, next) => {
   }
 };
 
-const decline = async (req, res, next) => {
+const declineUtilityBill = async (req, res, next) => {
   try {
     const id = req.params.id;
 
@@ -308,7 +309,7 @@ const decline = async (req, res, next) => {
   }
 };
 
-const approve = async (req, res, next) => {
+const approveUtility = async (req, res, next) => {
   try {
     const id = req.params.id;
 
@@ -332,6 +333,126 @@ const approve = async (req, res, next) => {
   }
 };
 
+const declineIdFront = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          idFrontStatus: "decline",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const approveIdFront = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          idFrontStatus: "approve",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const declineIdBack = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          idBackStatus: "decline",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const approveIdBack = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          idBackStatus: "approve",
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const genrateAccount = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return next(handleError(400, "user does not exist"));
+
+    await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          uid: randomize("0", 10),
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ fileData, msg: "files was decline " });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getUser,
   getUserById,
@@ -340,6 +461,11 @@ module.exports = {
   uploadIdFront,
   uploadIdBack,
   uploadUtilityBill,
-  decline,
-  approve,
+  declineUtilityBill,
+  approveUtility,
+  declineIdFront,
+  declineIdBack,
+  approveIdBack,
+  approveIdFront,
+  genrateAccount,
 };
