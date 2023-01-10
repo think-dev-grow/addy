@@ -35,8 +35,8 @@ const connectDB = () => {
 
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
+app.use("/ardilla/api/auth", authRoutes);
+app.use("/ardilla/api/user", userRoutes);
 app.use("/ardilla/api/target-plan", targetPlan);
 app.use("/ardilla/api/flex-plan", flexPlan);
 app.use("/ardilla/api/dilla-wallet", dillaWallet);
