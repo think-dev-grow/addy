@@ -1,5 +1,6 @@
 const FlexPlan = require("../models/FlexPlan");
 var abbreviate = require("number-abbreviate");
+const Transaction = require("../models/TransactionHistory");
 
 const handleError = require("../utils/error");
 
@@ -426,6 +427,86 @@ const activatePlanAPI = async (req, res, next) => {
   }
 };
 
+const topUp = async (req, res, next) => {
+  try {
+    const { amount } = req.body;
+    const id = req.params.id;
+
+    // const value;
+
+    const day = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+
+    const hour = new Date().getHours() + 1;
+    const minute = new Date().getMinutes();
+
+    const check = minute <= 9 ? `0${minute}` : minute;
+
+    const flexPlan = await FlexPlan.findOne({
+      userID: id,
+    });
+
+    if (!flexPlan)
+      return next(handleError(400, "Hey ,you dont have a fLex saving amount"));
+
+    if (flexPlan.userID !== id)
+      return next(handleError(400, "This is not your account"));
+
+    const date = `${day}-${month}-${year}  ${hour}:${check}`;
+
+    // const transcactionHistoryData = {
+    //   amount,
+
+    //   time: `${hour}:${check}`,
+    //   transactionType: "Credit",
+    // };
+
+    const transaction = new Transaction({
+      transactionAmount: amount,
+      transactionType: "credit",
+      transactionDate: date,
+      transactionDestination: "flex",
+      userId: id,
+    });
+
+    const data = await transaction.save();
+
+    const topUp = await FlexPlan.findOneAndUpdate(
+      { userID: id },
+      {
+        $set: {
+          accountBalance: flexPlan.accountBalance + amount,
+          // transcactionHistory: [
+          //   ...dillaWallet.transcactionHistory,
+          //   transcactionHistoryData,
+          // ],
+        },
+      },
+      { new: true }
+    );
+
+    res
+      .status(200)
+      .json({ msg: "Top up successful", topUp, data, success: true });
+    // res.status(200).json({ id, dillaWallet, transcactionHistoryData, topUp });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getFlexTransactionHistory = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const th = await Transaction.find({ userId: id });
+
+    res.status(200).json({ msg: "done", th });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createFP,
   autoFlexPlanEarn,
@@ -437,4 +518,6 @@ module.exports = {
   setSavingPeriod,
   calcIntrest,
   activatePlanAPI,
+  topUp,
+  getFlexTransactionHistory,
 };

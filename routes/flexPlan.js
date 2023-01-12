@@ -11,6 +11,8 @@ const {
   setSavingPeriod,
   calcIntrest,
   activatePlanAPI,
+  topUp,
+  getFlexTransactionHistory,
 } = require("../controllers/flexPlan");
 
 const router = express.Router();
@@ -38,5 +40,9 @@ router.put("/saving-period/:id", setSavingPeriod);
 router.get("/calculate-intrest/:id", calcIntrest);
 
 router.put("/activate-plan/:id", activatePlanAPI);
+
+router.put("/top-up-flex/:id", topUp);
+
+router.get("/flex-history/:id", getFlexTransactionHistory);
 
 module.exports = router;
